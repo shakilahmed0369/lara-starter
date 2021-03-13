@@ -17,6 +17,20 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
+                <i class="ni ni-badge text-dark"></i>
+                <span class="nav-link-text">Admin Control</span>
+              </a>
+              <ul class="collapse" id="collapseExample">
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>Roles</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>Users</a></li>
+              </ul>
+            </li>
+
+
+
             <li class="nav-item">
               <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
                 <i class="ni ni-planet text-orange"></i>

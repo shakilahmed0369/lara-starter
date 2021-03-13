@@ -18,8 +18,7 @@
 */
 :root
 {
-
-    --dark-blue: #172b4d;
+    --dark: #232231;
     --dark-lite: #2b2d41;
     --dark-liter: #4c6dae;
     
@@ -75,7 +74,6 @@ html
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-
 article,
 aside,
 figcaption,
@@ -101,8 +99,8 @@ body
 
     text-align: left;
 
-    color: var(--dark-liter);
-    background-color: var(--dark-lite);
+    color: #525f7f;
+    background-color: #f8f9fe;
 }
 
 [tabindex='-1']:focus:not(:focus-visible)
@@ -129,7 +127,7 @@ hr
 }
 .navbar-inner li a:hover
 {
-    background: var(--dark-lite);
+    background: #e6e9ec;
     
 }
 
@@ -5690,7 +5688,6 @@ input[type='button'].btn-block
 .nav-link
 {
     display: block;
-    color: var(--dark-liter) !important;
 
     padding: .25rem .75rem;
 }
@@ -8946,10 +8943,7 @@ button.bg-darker:focus
     background-color: black !important;
 }
 
-.bg-white
-{
-    background-color: #fff !important;
-}
+
 
 .bg-transparent
 {
@@ -19956,8 +19950,8 @@ a.btn-icon-only
 .footer
 {
     padding: 30px 0; 
-    color: var(--dark-liter);
 
+    background: #f8f9fe;
 }
 .footer .col-footer .heading
 {
@@ -24121,12 +24115,6 @@ button.bg-white:focus
 {
     background-color: #e6e6e6 !important;
 }
-
-.bg-card-dark
-{
-    background-color: #212130 !important;
-}
-
 
 .bg-gray
 {
@@ -29866,92 +29854,4 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 .bootstrap-datetimepicker-widget.dropdown-black table td .btn[data-action='togglePeriod']
 {
     background: transparent;
-}
-
-.active
-{
-    background: var(--dark-lite) !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-}
-
-.input-group{
-    background: var(--dark-lite) !important;
-}
-.input-group-text
-{
-    color: var(--dark-liter) !important; 
-    
-}
-
-textarea:focus, input:focus {
-    color: var(--dark-liter) !important;
-}
-
-input, select, textarea{
-    color: var(--dark-liter) !important;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: var(--dark-liter) !important;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: var(--dark-liter) !important;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: var(--dark-liter) !important;
-  }
-
-  .card.card-stats
-  {
-      background: var(--dark-blue) !important;
-      border-radius: 5px;
-  }
-
-  .card-title
-  {
-      color: #fff;
-  }
-  .h2
-  {
-      color: #fff;
-  }
-.bg-primary {
-    background: linear-gradient(100deg, rgba(76,109,174,1) 0%, rgba(43,45,65,1) 100%) !important;
-}
-
-.card-header
-{
-    background: var(--dark-blue) !important;
-}
-
-.card-body
-{
-    background: var(--dark-blue) !important;
-}
-
-h3
-{
-    color: #fff;
-}
-
-h5
-{
-    color: #fff !important;
-}
-.h5
-{
-    color: #fff !important;
-}
-hr
-{
-    background: #fff !important; 
-}
-
-.form-control-label
-{
-    color: #fff !important;
 }
