@@ -54,7 +54,7 @@ class VerificationController extends Controller
     {
         return $request->user('admin')->hasVerifiedEmail()
             ? redirect($this->redirectPath())
-            : view('admin.auth.verify');
+            : view('backend.admin.auth.verify');
     }
 
     /**
