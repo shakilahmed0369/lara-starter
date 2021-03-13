@@ -17,6 +17,10 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{ asset('backend/assets/css/argon.css?v=1.2.0') }}" type="text/css">
+  <!-- Extra css -->
+  @yield('extraCss')
+  <!-- Livewire css -->
+  @livewireStyles
 </head>
 
 <body>
@@ -50,9 +54,14 @@
   <script src="{{ asset('backend/assets/vendor/js-cookie/js.cookie.js') }}"></script>
   <script src="{{ asset('backend/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
   <script src="{{ asset('backend/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
-
+ 
   <!-- Argon JS -->
   <script src="{{ asset('backend/assets/js/argon.js?v=1.2.0') }}"></script>
+  <!-- Extra js -->
+  @yield('extraJs')
+  
+  <!-- Livewire JS -->
+  @livewireScripts
 </body>
 
 </html>
