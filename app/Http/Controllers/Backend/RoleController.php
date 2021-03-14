@@ -21,8 +21,7 @@ class RoleController extends Controller
 
     public function index()
     {
-       
-
+        return view('backend.pages.access-control.role.index');
     }
 
     /**
