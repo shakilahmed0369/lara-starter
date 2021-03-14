@@ -14,6 +14,11 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // index view
+     // | making role -> and assigening permission
+     // view must be organized -__-
+
     public function index()
     {
        
