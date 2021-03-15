@@ -24,5 +24,7 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 | Here all Backend routs has been defind    
 */
-
-Route::resource('/role', RoleController::class);
+Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
+  // Role Routes
+  Route::resource('/role', RoleController::class);
+});

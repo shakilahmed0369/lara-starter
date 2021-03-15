@@ -24,7 +24,7 @@
                 <span class="nav-link-text">Admin Control</span>
               </a>
               <ul class="collapse" id="collapseExample">
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>Roles</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.role.index') }}"><i class="fas fa-star-of-life"></i>Roles</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>Users</a></li>
               </ul>
             </li>
