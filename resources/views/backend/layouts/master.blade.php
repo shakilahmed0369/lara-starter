@@ -21,6 +21,7 @@
   @yield('extraCss')
   <!-- Livewire css -->
   @livewireStyles
+
 </head>
 
 <body>
@@ -62,6 +63,8 @@
   
   <!-- Livewire JS -->
   @livewireScripts
+  <!-- Sweet Alert -->
+  @include('sweetalert::alert')
 </body>
 
 </html>

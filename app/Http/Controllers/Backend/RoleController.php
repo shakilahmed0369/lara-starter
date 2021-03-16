@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {
@@ -31,8 +32,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+      
         $permissions = Permission::all()->groupBy('group_name');
-
+        toast('Your Post as been submited!','success')->width('24rem');
         return view('backend.pages.access-control.role.create', compact('permissions'));
     }
 
