@@ -13,7 +13,7 @@
               <div class="col-6"><h3 class="mb-0">Roles</h3></div>
             <div class="col-6 text-right">
 
-              <a href="" class="btn-sm btn-success"><b><i class="fas fa-plus"></i> Add Role</b></a>
+              <a href="{{ route('admin.role.create') }}" class="btn-sm btn-success"><b><i class="fas fa-plus"></i> Add Role</b></a>
           
             </div>
             </div>

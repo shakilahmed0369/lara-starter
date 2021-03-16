@@ -31,7 +31,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::all()->groupBy('group_name');
+
+        return view('backend.pages.access-control.role.create', compact('permissions'));
     }
 
     /**
@@ -42,7 +44,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
