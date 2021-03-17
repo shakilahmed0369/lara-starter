@@ -24,8 +24,11 @@
             <div class="col">
               <div class="form-group">
                 <label class="form-control-label" for="input-username">{{ _('Role Name') }}</label>
-                <input name="role-name" type="text" id="input-username" class="form-control" placeholder="give a awesome role name" value="">
+                <input name="role_name" type="text" id="input-username" class="form-control" placeholder="give a awesome role name" value="">
+                @error('role_name') <small class="text-danger">{{ $message }}</small> @enderror
+                 
               </div>
+              
             </div>
         </div>
         <h3>{{ __('Permissions') }}</h3>

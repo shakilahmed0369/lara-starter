@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="{{ asset('backend/assets/css/argon.css?v=1.2.0') }}" type="text/css">
   <!-- Extra css -->
   @yield('extraCss')
+   <!-- Errors -->
+  @include('backend.errors.validation-error')
   <!-- Livewire css -->
   @livewireStyles
 

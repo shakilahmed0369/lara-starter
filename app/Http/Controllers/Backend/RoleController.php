@@ -34,7 +34,7 @@ class RoleController extends Controller
     {
       
         $permissions = Permission::all()->groupBy('group_name');
-        toast('Your Post as been submited!','success')->width('24rem');
+        //toast('Your Post as been submited!','success')->width('24rem');
         return view('backend.pages.access-control.role.create', compact('permissions'));
     }
 
@@ -46,7 +46,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+      
+        /** validation */
+        $request->validate([
+          'role_name' => 'required|unique:roles,name'
+        ]);
+
+        /* creating role */
+        $role = Role::create(['name' => $request->role_name, 'guard_name' => 'admin']);
+        /** assigning permission to created role */
+        $role->syncPermissions($request->permissions);
+        /** sweet alert */
+        toast('Role has been created!','success')->width('23rem');
+        return redirect()->route('admin.role.index');
     }
 
     /**

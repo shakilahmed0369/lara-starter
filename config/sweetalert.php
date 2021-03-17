@@ -16,6 +16,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Toast for validation error
+    |--------------------------------------------------------------------------
+    |there can be time when you want to show your
+    |validation errors in pop up toast. you can set it true in you env (or here)
+    |and Error toast will handle you job
+    |no need to do anything just set it true and it will handle all your validation
+    |errors by it self (by showing in blade)
+    */
+
+    'errorToast' => env('SWEET_TOAST_FOR_ERROR', false),
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Always load the sweetalert.all.js
     |--------------------------------------------------------------------------
     | There might be situations where you will always want the sweet alert
