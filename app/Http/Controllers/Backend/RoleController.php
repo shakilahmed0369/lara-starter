@@ -80,7 +80,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permissions = Permission::all()->groupBy('group_name');
+        $editRole = Role::findOrFail($id);
+        
+        return view('backend.pages.access-control.role.edit', compact('editRole', 'permissions'));
     }
 
     /**
@@ -92,7 +95,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $role = Role::findOrFail($id);
+      $role->syncPermissions($request->permissions);
+      toast('Role has been Updated!','success')->width('23rem');
+      return redirect()->route('admin.role.index');
     }
 
     /**

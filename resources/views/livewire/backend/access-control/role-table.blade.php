@@ -63,10 +63,10 @@
                   </td>
                   
                   <td class="table-actions">
-                    <a href="#!" class="table-action-edit btn-sm btn-primary mr-3" data-toggle="tooltip" data-original-title="Edit Role">
+                    <a href="{{ route('admin.role.edit', $role->id) }}" class="table-action-edit btn-sm btn-primary mr-3" data-toggle="tooltip" data-original-title="Edit Role">
                       <i class="fas fa-user-edit"></i> Edit
                     </a>
-                    <a href="#!" class="table-action-delete  btn-sm btn-danger" data-toggle="tooltip" data-original-title="Delete Role">
+                    <a href="#!" wire:click.prevent="alertConfirm({{ $role->id }})" class="table-action-delete  btn-sm btn-danger" data-toggle="tooltip" data-original-title="Delete Role">
                       <i class="fas fa-trash"></i> Delete
                     </a>
                   </td>

@@ -132,6 +132,9 @@ hr
     
 }
 
+.swal-text {
+  text-align: center !important;
+}
 
 h1,
 h2,
