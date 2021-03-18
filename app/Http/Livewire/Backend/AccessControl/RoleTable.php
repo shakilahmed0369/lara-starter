@@ -14,8 +14,7 @@ class RoleTable extends Component
 
   public function mount()
   {
-    // $user = Admin::find(1);
-    // $user->assignRole('super');
+    
     
   }
  

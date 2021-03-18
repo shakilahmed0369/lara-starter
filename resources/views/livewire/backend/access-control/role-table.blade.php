@@ -34,8 +34,7 @@
                 <tr>
                   <td class="budget">
                     {{ ++$loop->index }}
-                  </td>
-                  
+                  </td> 
                   <td>
                     <span class="badge badge-dot mr-4">
                       <i class="bg-warning"></i>
@@ -44,23 +43,21 @@
                   </td>
 
                   <td class="budget">
-                    {{-- @foreach ($role->users as $user)
-                    {{ $user->name }}
-                    @endforeach --}}
+                    
                     <div class="avatar-group">
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" title="<img src='https://via.placeholder.com/150'/>">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-1.jpg">
+                      <a href="#" class="avatar rounded-circle" data-trigger="hover" rel="popover" data-html="true" data-content='
+                        <div class="row p-2">
+                          <div style="">
+                            <img class="rounded" src="https://via.placeholder.com/70" alt="">
+                          </div>
+                          <div class=" ml-2">
+                            <h4 class="mb-0">Shakil Ahmed</h4>
+                            <small>shakilahmed@gmail.com</small><br>
+                            <small>Admin</small>
+                          </div>
+                        </div>'>
+                        <img src="../../assets/img/theme/team-4.jpg">
                       </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-2.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-3.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
-                      </a>
-                      
                     </div>
                     
                   </td>
