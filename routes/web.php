@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,6 @@ Route::get('/', function () {
 Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
   // Role Routes
   Route::resource('/role', RoleController::class);
+  // Admin User Routes
+  Route::resource('/admin-user', AdminUserController::class);
 });

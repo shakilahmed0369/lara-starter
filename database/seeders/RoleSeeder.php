@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -38,10 +39,14 @@ class RoleSeeder extends Seeder
             ]
           ]
       ];
-      
+      //creating role
       $role = Role::create(['name' => 'super-admin', 'guard_name' => 'admin']);
+      //assigning role to first user
+      $user = Admin::first();
+      $user->assignRole('super-admin');
+
       foreach($permissions as $permission){
-        //create role
+        //create permissons
         foreach($permission['permission'] as $singlePermission){
           $permission = Permission::create(['name' => $singlePermission, 'group_name' => $permission['group_name'], 'guard_name' => 'admin']);
           // assign each permission to role

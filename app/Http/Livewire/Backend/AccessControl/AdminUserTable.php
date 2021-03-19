@@ -4,11 +4,12 @@ namespace App\Http\Livewire\Backend\AccessControl;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
-
-class RoleTable extends Component
+use App\Models\Admin;
+class AdminUserTable extends Component
 {
+
   use WithPagination;
+
   protected $paginationTheme = 'bootstrap'; 
   protected $listeners = ['remove'];
 
@@ -19,14 +20,14 @@ class RoleTable extends Component
    * @return response()
    */
 
-    public function alertConfirm($roleId)
+    public function alertConfirm($userId)
     {
 
         $this->dispatchBrowserEvent('swal:confirm', [
                 'type' => 'warning',  
                 'message' => 'Are you sure?', 
                 'text' => 'If deleted, you will not be able to recover the data',
-                'roleId' => $roleId
+                'roleId' => $userId
             ]);
     }
 
@@ -38,7 +39,7 @@ class RoleTable extends Component
 
     public function remove($roleId)
     {
-      $distroyRole = Role::findOrFail($roleId);
+      $distroyRole = Admin::findOrFail($roleId);
       $distroyRole->delete();
         /* Write Delete Logic */
         $this->dispatchBrowserEvent('swal:modal', [
@@ -49,9 +50,8 @@ class RoleTable extends Component
 
     }
 
-
     public function render()
     {
-        return view('livewire.backend.access-control.role-table', ['roles' => Role::with('permissions')->paginate(10)]);
+        return view('livewire.backend.access-control.admin-user-table', ['adminUsers' => Admin::paginate(10)]);
     }
 }
