@@ -26,6 +26,7 @@
                   <th scope="col" class="sort" data-sort="name">No.</th>
                   <th scope="col" class="sort" data-sort="budget">Role</th>
                   <th scope="col" class="sort" data-sort="name">Role Users</th>
+                  <th scope="col" class="sort" data-sort="name">Permissions</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -43,7 +44,7 @@
                   </td>
 
                   <td class="budget">
-                    
+                    @foreach ($role->users as $roleUser)
                     <div class="avatar-group">
                       <a href="#" class="avatar rounded-circle" data-trigger="hover" rel="popover" data-html="true" data-content='
                         <div class="row p-2">
@@ -51,22 +52,30 @@
                             <img class="rounded" src="https://via.placeholder.com/70" alt="">
                           </div>
                           <div class=" ml-2">
-                            <h4 class="mb-0">Shakil Ahmed</h4>
-                            <small>shakilahmed@gmail.com</small><br>
-                            <small>Admin</small>
+                            <h4 class="mb-0">{{ $roleUser->name }}</h4>
+                            <small>{{ $roleUser->email }}</small><br>
+                            <small>{{ $role->name }}</small>
                           </div>
                         </div>'>
                         <img src="../../assets/img/theme/team-4.jpg">
                       </a>
                     </div>
-                    
+                    @endforeach
+                  </td>
+
+                  <td>
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-warning"></i>
+                      <span class="status">( {{  $role->permissions->count()  }} )</span>
+                    </span>
                   </td>
                   
                   <td class="table-actions">
-                    <a href="{{ route('admin.role.edit', $role->id) }}" class="table-action-edit btn-sm btn-primary mr-3" data-toggle="tooltip" data-original-title="Edit Role">
+                    <a href="{{ route('admin.role.edit', $role->id) }}" class=" table-action-edit btn-sm btn-primary mr-3
+                     @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Edit Role">
                       <i class="fas fa-user-edit"></i> Edit
                     </a>
-                    <a href="#!" wire:click.prevent="alertConfirm({{ $role->id }})" class="table-action-delete  btn-sm btn-danger" data-toggle="tooltip" data-original-title="Delete Role">
+                    <a href="#!" wire:click.prevent="alertConfirm({{ $role->id }})" class="table-action-delete  btn-sm btn-danger @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Delete Role">
                       <i class="fas fa-trash"></i> Delete
                     </a>
                   </td>

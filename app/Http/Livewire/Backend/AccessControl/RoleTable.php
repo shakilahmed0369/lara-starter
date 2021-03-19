@@ -53,6 +53,6 @@ class RoleTable extends Component
 
     public function render()
     {
-        return view('livewire.backend.access-control.role-table', ['roles' => Role::paginate(10)]);
+        return view('livewire.backend.access-control.role-table', ['roles' => Role::with('permissions')->paginate(10)]);
     }
 }

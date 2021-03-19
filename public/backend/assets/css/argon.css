@@ -136,6 +136,24 @@ hr
   text-align: center !important;
 }
 
+.disable { 
+    pointer-events: none!important; 
+    cursor: default !important; 
+    background: red;
+}
+
+a.btn-primary.disable{
+  color: #fff !important;
+  background-color: #83afdf !important;
+  border-color: #608dbd !important;
+}
+
+a.btn-danger.disable{
+  color: #fff !important;
+  background-color: #e98282 !important;
+  border-color: #608dbd !important;
+}
+
 h1,
 h2,
 h3,

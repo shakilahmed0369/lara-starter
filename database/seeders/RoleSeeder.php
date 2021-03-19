@@ -39,7 +39,7 @@ class RoleSeeder extends Seeder
           ]
       ];
       
-      $role = Role::create(['name' => 'super', 'guard_name' => 'admin']);
+      $role = Role::create(['name' => 'super-admin', 'guard_name' => 'admin']);
       foreach($permissions as $permission){
         //create role
         foreach($permission['permission'] as $singlePermission){

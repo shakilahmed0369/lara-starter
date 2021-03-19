@@ -46,7 +46,6 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-      
         /** validation */
         $request->validate([
           'role_name' => 'required|unique:roles,name'
@@ -99,16 +98,5 @@ class RoleController extends Controller
       $role->syncPermissions($request->permissions);
       toast('Role has been Updated!','success')->width('23rem');
       return redirect()->route('admin.role.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

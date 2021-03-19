@@ -17,7 +17,7 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-            
+            {{-- @if(auth()->guard('admin')->user()->can('createUser')) --}}
             <li class="nav-item">
               <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
                 <i class="ni ni-badge text-dark"></i>
@@ -28,7 +28,7 @@
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>Users</a></li>
               </ul>
             </li>
-
+            {{-- @endif --}}
 
 
             <li class="nav-item">
