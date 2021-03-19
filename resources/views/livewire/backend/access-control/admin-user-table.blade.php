@@ -36,18 +36,31 @@
               <td class="budget">
                 {{ ++$loop->index }}
               </td> 
-              <td>
-                image
-              </td>
+              <td><img width="70px" class="img-fluid rounded" src="{{$user->avatar ? asset("storage/backend/avatar/$user->avatar") : 'https://media.tenor.com/images/4fd49de4149a6d348e04f2465a3970af/tenor.gif' }}" alt=""></td>
 
               <td class="budget">
                 {{ $user->name }}
               </td>
 
               <td>
-               {{ $user->getRoleNames() }}
+               @foreach ($user->getRoleNames() as $roleName)
+               @if ($user->hasRole('super-admin'))
+               <i class="fas fa-crown text-warning"></i> 
+               @endif
+               <span class="badge badge-success"><b> {{ $roleName }}</b></span>   
+               @endforeach
               </td>
-              @if (!$user->id === 1)
+
+              @if ($user->id == 1)
+                <td class="table-actions">
+                  <a href="{{ route('admin.admin-user.edit', $user->id) }}" class=" table-action-edit btn-sm disable btn-primary mr-3 " data-toggle="tooltip" data-original-title="Edit Role">
+                    <i class="fas fa-user-edit"></i> Edit
+                  </a>
+                  <a href="#!" wire:click.prevent="alertConfirm({{ $user->id }})" class="table-action-delete disable  btn-sm btn-danger" data-toggle="tooltip" data-original-title="Delete Role">
+                    <i class="fas fa-trash"></i> Delete
+                  </a>
+                </td>
+              @else
                 <td class="table-actions">
                   <a href="{{ route('admin.admin-user.edit', $user->id) }}" class=" table-action-edit btn-sm btn-primary mr-3 " data-toggle="tooltip" data-original-title="Edit Role">
                     <i class="fas fa-user-edit"></i> Edit
@@ -55,10 +68,8 @@
                   <a href="#!" wire:click.prevent="alertConfirm({{ $user->id }})" class="table-action-delete  btn-sm btn-danger" data-toggle="tooltip" data-original-title="Delete Role">
                     <i class="fas fa-trash"></i> Delete
                   </a>
-                </td>
+              </td>
               @endif
-              
-
             </tr> 
             @endforeach
 

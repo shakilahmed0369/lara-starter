@@ -10,18 +10,18 @@
           <h3 class="mb-0">Create Admin User</h3>
         </div>
         <div class="col-4 text-right">
-          <a href="http://127.0.0.1:8000/admin/role" class="btn btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Go back</a>
+          <a href="{{ route('admin.admin-user.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Go back</a>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <form action="{{ route('admin.admin-user.store') }}" method="POST">
+      <form action="{{ route('admin.admin-user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
           <div class="col-md-6">
             <div class="form-group ">
               <label for="exampleFormControlInput1">Name</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+              <input name="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
               @error('name')
                   <small class="text-danger">{{ $message }}</small>
               @enderror
@@ -30,7 +30,7 @@
           <div class="col-md-6 ">
             <div class="form-group ">
               <label for="exampleFormControlInput1">Email</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+              <input name="email" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
               @error('email')
                   <small class="text-danger">{{ $message }}</small>
               @enderror
