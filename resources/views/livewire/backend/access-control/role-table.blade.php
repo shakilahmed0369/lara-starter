@@ -49,7 +49,8 @@
                       <a href="#" class="avatar rounded-circle" data-trigger="hover" rel="popover" data-html="true" data-content='
                         <div class="row p-2">
                           <div style="">
-                            <img class="rounded" src="https://via.placeholder.com/70" alt="">
+                            <img width="70px" class="img-fluid rounded" src="{{$roleUser->avatar ? asset("storage/backend/avatar/$roleUser->avatar") : 'https://media.tenor.com/images/4fd49de4149a6d348e04f2465a3970af/tenor.gif' }}" alt="">
+
                           </div>
                           <div class=" ml-2">
                             <h4 class="mb-0">{{ $roleUser->name }}</h4>
@@ -57,7 +58,7 @@
                             <small>{{ $role->name }}</small>
                           </div>
                         </div>'>
-                        <img src="../../assets/img/theme/team-4.jpg">
+                        <img width="70px" class="img-fluid rounded" src="{{$roleUser->avatar ? asset("storage/backend/avatar/$roleUser->avatar") : 'https://media.tenor.com/images/4fd49de4149a6d348e04f2465a3970af/tenor.gif' }}" alt="">
                       </a>
                     </div>
                     @endforeach
