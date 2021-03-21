@@ -7,8 +7,9 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Intervention\Image\ImageManagerStatic as Image;
-use File;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\AdminCreated;
+use File;
 
 class AdminUserController extends Controller
 {
@@ -18,7 +19,7 @@ class AdminUserController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index()
-  {
+  { 
     return view('backend.pages.access-control.admin-user.index');
   }
 
@@ -79,6 +80,10 @@ class AdminUserController extends Controller
 
     //role assign to user
     $admin->assignRole($request->role);
+    
+   //sending mail to the user
+   $admin->notify(new AdminCreated($request));
+
     toast('Admin has been created!', 'success')->width('23rem');
     return redirect()->route('admin.admin-user.index');
   }
@@ -102,6 +107,7 @@ class AdminUserController extends Controller
    */
   public function edit($id)
   {
+
     if (Auth::guard('admin')->id() != 1 && $id == 1) {
       return redirect(abort(404));
     } else {

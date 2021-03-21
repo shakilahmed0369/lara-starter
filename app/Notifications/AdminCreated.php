@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminCreated extends Notification
+class AdminCreated extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,8 +41,9 @@ class AdminCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('Your User Email'. $notifiable->email)
+                    ->line('Your User Email'. $notifiable->password)
+                    ->action('Notification Action', url('/admin'))
                     ->line('Thank you for using our application!');
     }
 
