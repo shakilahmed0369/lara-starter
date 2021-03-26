@@ -19,7 +19,7 @@ class AdminUserController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index()
-  { 
+  {
     return view('backend.pages.access-control.admin-user.index');
   }
 
@@ -80,9 +80,9 @@ class AdminUserController extends Controller
 
     //role assign to user
     $admin->assignRole($request->role);
-    
-   //sending mail to the user
-   $admin->notify(new AdminCreated($request));
+
+    //sending mail to the user
+    $admin->notify(new AdminCreated($request));
 
     toast('Admin has been created!', 'success')->width('23rem');
     return redirect()->route('admin.admin-user.index');

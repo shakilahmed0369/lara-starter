@@ -10,7 +10,7 @@ class RoleTable extends Component
 {
   use WithPagination;
   protected $paginationTheme = 'bootstrap';
-  protected $listeners = ['remove'];
+  protected $listeners       = ['remove'];
 
 
   /**
@@ -23,10 +23,10 @@ class RoleTable extends Component
   {
 
     $this->dispatchBrowserEvent('swal:confirm', [
-      'type' => 'warning',
+      'type'    => 'warning',
       'message' => 'Are you sure?',
-      'text' => 'If deleted, you will not be able to recover the data',
-      'roleId' => $roleId
+      'text'    => 'If deleted, you will not be able to recover the data',
+      'roleId'  => $roleId
     ]);
   }
 
@@ -43,13 +43,13 @@ class RoleTable extends Component
       $distroyRole->delete();
       /* Write Delete Logic */
       $this->dispatchBrowserEvent('swal:modal', [
-        'type' => 'success',
+        'type'    => 'success',
         'message' => 'Role Deleted Successfully!',
-        'text' => 'regret wont be enough ( ͡❛ ₃ ͡❛)'
+        'text'    => 'regret wont be enough ( ͡❛ ₃ ͡❛)'
       ]);
     }
   }
-  
+
 
   public function render()
   {

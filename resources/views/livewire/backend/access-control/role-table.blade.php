@@ -42,15 +42,13 @@
                       <span class="status">{{ $role->name }}</span>
                     </span>
                   </td>
-
                   <td class="budget">
-                    @foreach ($role->users as $roleUser)
                     <div class="avatar-group">
+                    @foreach ($role->users as $roleUser)
                       <a href="#" class="avatar rounded-circle" data-trigger="hover" rel="popover" data-html="true" data-content='
                         <div class="row p-2">
-                          <div style="">
+                          <div>
                             <img width="70px" class="img-fluid rounded" src="{{$roleUser->avatar ? asset("storage/backend/avatar/$roleUser->avatar") : 'https://media.tenor.com/images/4fd49de4149a6d348e04f2465a3970af/tenor.gif' }}" alt="">
-
                           </div>
                           <div class=" ml-2">
                             <h4 class="mb-0">{{ $roleUser->name }}</h4>
@@ -60,14 +58,14 @@
                         </div>'>
                         <img width="70px" class="img-fluid rounded" src="{{$roleUser->avatar ? asset("storage/backend/avatar/$roleUser->avatar") : 'https://media.tenor.com/images/4fd49de4149a6d348e04f2465a3970af/tenor.gif' }}" alt="">
                       </a>
+                      @endforeach
                     </div>
-                    @endforeach
                   </td>
 
                   <td>
                     <span class="badge badge-dot mr-4">
                       <i class="bg-warning"></i>
-                      <span class="status">( {{  $role->permissions->count()  }} )</span>
+                      <span class="status">( {{  $role->permissions()->count()  }} )</span>
                     </span>
                   </td>
                   
