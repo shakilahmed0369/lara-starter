@@ -79,6 +79,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+      if($id == 1){
+        return abort(401);
+      }
         $permissions = Permission::all()->groupBy('group_name');
         $editRole = Role::findOrFail($id);
         
@@ -94,6 +97,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+      if($id == 1){
+        return abort(401);
+      }
       $role = Role::findOrFail($id);
       $role->syncPermissions($request->permissions);
       toast('Role has been Updated!','success')->width('23rem');

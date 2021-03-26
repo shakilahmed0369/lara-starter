@@ -108,13 +108,13 @@ class AdminUserController extends Controller
   public function edit($id)
   {
 
-    if (Auth::guard('admin')->id() != 1 && $id == 1) {
-      return redirect(abort(404));
-    } else {
+    if ( $id === 1 ) {
+      return abort(401);
+    } 
       $roles = Role::all();
       $adminUserEdit = Admin::findOrFail($id);
       return view('backend.pages.access-control.admin-user.edit', compact('adminUserEdit', 'roles'));
-    }
+    
   }
 
   /**
@@ -126,7 +126,10 @@ class AdminUserController extends Controller
    */
   public function update(Request $request, $id)
   {
-    // return $request->role;
+    if($id === 1) {
+      return abort(401);
+    }
+
     //making object and validation id
     $admin = Admin::findOrFail($id);
 

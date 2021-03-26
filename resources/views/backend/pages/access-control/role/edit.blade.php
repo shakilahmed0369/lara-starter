@@ -24,7 +24,7 @@
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label class="form-control-label" for="input-username">{{ _('Role Name') }}</label>
+                <label class="form-control-label" for="input-username">{{ __('Role Name') }}</label>
                 <input name="role_name" type="text" id="input-username" class="form-control" placeholder="give a awesome role name" value="{{ $editRole->name }}">
                 @error('role_name') <small class="text-danger">{{ $message }}</small> @enderror 
               </div>
