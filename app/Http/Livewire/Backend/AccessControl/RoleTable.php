@@ -12,7 +12,6 @@ class RoleTable extends Component
   protected $paginationTheme = 'bootstrap';
   protected $listeners       = ['remove'];
 
-
   /**
    * Write code on Method
    *
@@ -38,15 +37,17 @@ class RoleTable extends Component
 
   public function remove($roleId)
   {
-    if ($roleId != 1) {
-      $distroyRole = Role::findOrFail($roleId);
-      $distroyRole->delete();
-      /* Write Delete Logic */
-      $this->dispatchBrowserEvent('swal:modal', [
-        'type'    => 'success',
-        'message' => 'Role Deleted Successfully!',
-        'text'    => 'regret wont be enough ( ͡❛ ₃ ͡❛)'
-      ]);
+    if (auth()->guard('admin')->user()->can('deleteRole')) {
+      if ($roleId != 1) {
+        $distroyRole = Role::findOrFail($roleId);
+        $distroyRole->delete();
+        /* Write Delete Logic */
+        $this->dispatchBrowserEvent('swal:modal', [
+          'type'    => 'success',
+          'message' => 'Role Deleted Successfully!',
+          'text'    => 'regret wont be enough ( ͡❛ ₃ ͡❛)'
+        ]);
+      }
     }
   }
 

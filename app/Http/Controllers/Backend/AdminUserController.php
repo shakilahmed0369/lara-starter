@@ -7,12 +7,18 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Intervention\Image\ImageManagerStatic as Image;
-use Illuminate\Support\Facades\Auth;
 use App\Notifications\AdminCreated;
 use File;
 
 class AdminUserController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('admin.auth');
+    $this->middleware(['permission:readUser','auth:admin'])->only(['index']);
+    $this->middleware(['permission:createUser','auth:admin'])->only(['create', 'store']);
+    $this->middleware(['permission:editUser','auth:admin'])->only(['edit', 'update']);
+  }
   /**
    * Display a listing of the resource.
    *

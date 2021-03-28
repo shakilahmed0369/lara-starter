@@ -40,18 +40,20 @@ class AdminUserTable extends Component
 
   public function remove($roleId)
   {
-    $distroyRole = Admin::findOrFail($roleId);
-    $distroyRole->delete();
-    /* Write Delete Logic */
-    $this->dispatchBrowserEvent('swal:modal', [
-      'type'    => 'success',
-      'message' => 'Role Deleted Successfully!',
-      'text'    => 'regret wont be enough ( ͡❛ ₃ ͡❛)'
-    ]);
+    if (auth()->guard('admin')->user()->can('deleteUser')) {
+      $distroyRole = Admin::findOrFail($roleId);
+      $distroyRole->delete();
+      /* Write Delete Logic */
+      $this->dispatchBrowserEvent('swal:modal', [
+        'type'    => 'success',
+        'message' => 'Role Deleted Successfully!',
+        'text'    => 'regret wont be enough ( ͡❛ ₃ ͡❛)'
+      ]);
+    }
   }
 
   public function render()
   {
-    return view('livewire.backend.access-control.admin-user-table', ['adminUsers' => Admin::paginate(10)]);
+    return view('livewire.backend.access-control.admin-user-table', ['adminUsers' => Admin::with('roles')->paginate(10)]);
   }
 }

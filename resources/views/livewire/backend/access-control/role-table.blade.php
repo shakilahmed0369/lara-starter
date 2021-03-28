@@ -1,5 +1,5 @@
 <div>
-      <!-- Page content -->
+<!-- Page content -->
   <div class="header bg-primary pb-6"></div>
   <div class="container-fluid mt--6">
     <div class="row">
@@ -10,13 +10,11 @@
             <div class="row">
               <div class="col-6"><h3 class="mb-0">Roles</h3></div>
             <div class="col-6 text-right">
-
+              @if (auth()->guard('admin')->user()->can('createRole'))
               <a href="{{ route('admin.role.create') }}" class="btn-sm btn-success"><b><i class="fas fa-plus"></i> Add Role</b></a>
-          
+              @endif
             </div>
             </div>
-              
-            
           </div>
           <!-- Light table -->
           <div class="table-responsive">
@@ -61,33 +59,33 @@
                       @endforeach
                     </div>
                   </td>
-
                   <td>
                     <span class="badge badge-dot mr-4">
                       <i class="bg-warning"></i>
                       <span class="status">( {{  $role->permissions()->count()  }} )</span>
                     </span>
                   </td>
-                  
                   <td class="table-actions">
-                    <a href="{{ route('admin.role.edit', $role->id) }}" class=" table-action-edit btn-sm btn-primary mr-3
-                     @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Edit Role">
-                      <i class="fas fa-user-edit"></i> Edit
-                    </a>
-                    <a href="#!" wire:click.prevent="alertConfirm({{ $role->id }})" class="table-action-delete  btn-sm btn-danger @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Delete Role">
-                      <i class="fas fa-trash"></i> Delete
-                    </a>
+                    @if (auth()->guard('admin')->user()->can('editRole'))
+                      <a href="{{ route('admin.role.edit', $role->id) }}" class=" table-action-edit btn-sm btn-primary mr-3
+                      @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Edit Role">
+                        <i class="fas fa-user-edit"></i> Edit
+                      </a>
+                    @endif
+                    @if (auth()->guard('admin')->user()->can('deleteRole'))
+                      <a href="#!" wire:click.prevent="alertConfirm({{ $role->id }})" class="table-action-delete  btn-sm btn-danger @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Delete Role">
+                        <i class="fas fa-trash"></i> Delete
+                      </a>
+                    @endif
                   </td>
                 </tr> 
                 @endforeach
-
               </tbody>
             </table>
           </div>
           <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
-                
                 {{ $roles->links() }}
               </ul>
             </nav>
