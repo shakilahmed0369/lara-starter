@@ -37,7 +37,7 @@ class RoleController extends Controller
   public function create()
   {
 
-    $permissions = Permission::all()->groupBy('group_name');
+    $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
     //toast('Your Post as been submited!','success')->width('24rem');
     return view('backend.pages.access-control.role.create', compact('permissions'));
   }
@@ -75,7 +75,7 @@ class RoleController extends Controller
     if ($id == 1) {
       return abort(403);
     }
-    $permissions = Permission::all()->groupBy('group_name');
+    $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
     $editRole    = Role::findOrFail($id);
 
     return view('backend.pages.access-control.role.edit', compact('editRole', 'permissions'));
