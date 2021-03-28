@@ -9,49 +9,49 @@ use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      $permissions = 
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    $permissions =
       [
         [
           'group_name' => 'Role',
-          'permission' => 
-            [
-              'readRole',
-              'createRole',
-              'editRole',
-              'deleteRole'
-            ]
-          ],
+          'permission' =>
           [
-            'group_name' => 'User',
-            'permission' => 
-            [
-              'readUser',
-              'createUser',
-              'editUser',
-              'deleteUser'
-            ]
+            'read-Role',
+            'create-Role',
+            'edit-Role',
+            'delete-Role'
           ]
+        ],
+        [
+          'group_name' => 'Admin-User',
+          'permission' =>
+          [
+            'read-Admin-User',
+            'create-Admin-User',
+            'edit-Admin-User',
+            'delete-Admin-User'
+          ]
+        ]
       ];
-      //creating role
-      $role = Role::create(['name' => 'super-admin', 'guard_name' => 'admin']);
-      //assigning role to first user
-      $user = Admin::first();
-      $user->assignRole('super-admin');
+    //creating role
+    $role = Role::create(['name' => 'super-admin', 'guard_name' => 'admin']);
+    //assigning role to first user
+    $user = Admin::first();
+    $user->assignRole('super-admin');
 
-      foreach($permissions as $permission){
-        //create permissons
-        foreach($permission['permission'] as $singlePermission){
-          $permission = Permission::create(['name' => $singlePermission, 'group_name' => $permission['group_name'], 'guard_name' => 'admin']);
-          // assign each permission to role
-          $role->givePermissionTo($permission);
-        }
-      };
-    }
+    foreach ($permissions as $permission) {
+      //create permissons
+      foreach ($permission['permission'] as $singlePermission) {
+        $permission = Permission::create(['name' => $singlePermission, 'group_name' => $permission['group_name'], 'guard_name' => 'admin']);
+        // assign each permission to role
+        $role->givePermissionTo($permission);
+      }
+    };
+  }
 }

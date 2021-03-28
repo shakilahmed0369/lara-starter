@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-6"><h3 class="mb-0">Admin Users</h3></div>
         <div class="col-6 text-right">
-          @if (auth()->guard('admin')->user()->can('createUser'))
+          @if (auth()->guard('admin')->user()->can('create-Admin-User'))
           <a href="{{ route('admin.admin-user.create') }}" class="btn-sm btn-success"><b><i class="fas fa-plus"></i> Add New Admin</b></a>
           @endif
         </div>
@@ -60,12 +60,12 @@
                 </td>
               @else
                 <td class="table-actions">
-                  @if (auth()->guard('admin')->user()->can('editUser'))
+                  @if (auth()->guard('admin')->user()->can('edit-Admin-User'))
                   <a href="{{ route('admin.admin-user.edit', $user->id) }}" class=" table-action-edit btn-sm btn-primary mr-3 " data-toggle="tooltip" data-original-title="Edit Role">
                     <i class="fas fa-user-edit"></i> Edit
                   </a>
                   @endif
-                  @if (auth()->guard('admin')->user()->can('deleteUser'))
+                  @if (auth()->guard('admin')->user()->can('delete-Admin-User'))
                   <a href="#!" wire:click.prevent="alertConfirm({{ $user->id }})" class="table-action-delete  btn-sm btn-danger" data-toggle="tooltip" data-original-title="Delete Role">
                     <i class="fas fa-trash"></i> Delete
                   </a>

@@ -17,7 +17,7 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-            {{-- @if(auth()->guard('admin')->user()->can('createUser')) --}}
+            {{-- @if(auth()->guard('admin')->user()->can('create-Admin-User')) --}}
             <li class="nav-item">
               <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
                 <i class="ni ni-badge text-dark"></i>

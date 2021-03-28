@@ -15,9 +15,9 @@ class AdminUserController extends Controller
   public function __construct()
   {
     $this->middleware('admin.auth');
-    $this->middleware(['permission:readUser','auth:admin'])->only(['index']);
-    $this->middleware(['permission:createUser','auth:admin'])->only(['create', 'store']);
-    $this->middleware(['permission:editUser','auth:admin'])->only(['edit', 'update']);
+    $this->middleware(['permission:read-Admin-User','auth:admin'])->only(['index']);
+    $this->middleware(['permission:create-Admin-User','auth:admin'])->only(['create', 'store']);
+    $this->middleware(['permission:edit-Admin-User','auth:admin'])->only(['edit', 'update']);
   }
   /**
    * Display a listing of the resource.

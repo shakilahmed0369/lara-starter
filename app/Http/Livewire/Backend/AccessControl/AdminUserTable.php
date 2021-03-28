@@ -40,7 +40,7 @@ class AdminUserTable extends Component
 
   public function remove($roleId)
   {
-    if (auth()->guard('admin')->user()->can('deleteUser')) {
+    if (auth()->guard('admin')->user()->can('delete-Admin-User')) {
       $distroyRole = Admin::findOrFail($roleId);
       $distroyRole->delete();
       /* Write Delete Logic */

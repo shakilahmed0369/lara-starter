@@ -28,7 +28,7 @@ class permissions extends Command
    */
   public function __construct()
   {
-    parent:: __construct();
+    parent::__construct();
   }
 
   /**
@@ -44,7 +44,7 @@ class permissions extends Command
     if ($singlePermission) {
       $this->info('Creating Permission');
       foreach ($singlePermission as $permission) {
-        Permission:: create(['name' => $permission . $model, 'group_name' => $model, 'guard_name' => 'admin']);
+        Permission::create(['name' => $permission . $model, 'group_name' => $model, 'guard_name' => 'admin']);
         $this->info($permission . $model);
       }
 
@@ -65,14 +65,14 @@ class permissions extends Command
     } else {
 
       $permissions = [
-        "read$model",
-        "create$model",
-        "edit$model",
-        "delete$model"
+        "read-$model",
+        "create-$model",
+        "edit-$model",
+        "delete-$model"
       ];
       $this->info('Creating permissions...');
       foreach ($permissions as $permission) {
-        Permission:: create(['name' => $permission, 'group_name' => $model, 'guard_name' => 'admin']);
+        Permission::create(['name' => $permission, 'group_name' => $model, 'guard_name' => 'admin']);
         $this->info($permission);
       }
       $this->info('Done...');

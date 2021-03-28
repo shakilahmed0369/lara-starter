@@ -10,7 +10,7 @@
             <div class="row">
               <div class="col-6"><h3 class="mb-0">Roles</h3></div>
             <div class="col-6 text-right">
-              @if (auth()->guard('admin')->user()->can('createRole'))
+              @if (auth()->guard('admin')->user()->can('create-Role'))
               <a href="{{ route('admin.role.create') }}" class="btn-sm btn-success"><b><i class="fas fa-plus"></i> Add Role</b></a>
               @endif
             </div>
@@ -66,13 +66,13 @@
                     </span>
                   </td>
                   <td class="table-actions">
-                    @if (auth()->guard('admin')->user()->can('editRole'))
+                    @if (auth()->guard('admin')->user()->can('edit-Role'))
                       <a href="{{ route('admin.role.edit', $role->id) }}" class=" table-action-edit btn-sm btn-primary mr-3
                       @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Edit Role">
                         <i class="fas fa-user-edit"></i> Edit
                       </a>
                     @endif
-                    @if (auth()->guard('admin')->user()->can('deleteRole'))
+                    @if (auth()->guard('admin')->user()->can('delete-Role'))
                       <a href="#!" wire:click.prevent="alertConfirm({{ $role->id }})" class="table-action-delete  btn-sm btn-danger @if ($role->name === 'super-admin') disable @endif" data-toggle="tooltip" data-original-title="Delete Role">
                         <i class="fas fa-trash"></i> Delete
                       </a>

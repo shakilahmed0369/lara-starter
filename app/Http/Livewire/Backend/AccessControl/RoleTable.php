@@ -37,7 +37,7 @@ class RoleTable extends Component
 
   public function remove($roleId)
   {
-    if (auth()->guard('admin')->user()->can('deleteRole')) {
+    if (auth()->guard('admin')->user()->can('delete-Role')) {
       if ($roleId != 1) {
         $distroyRole = Role::findOrFail($roleId);
         $distroyRole->delete();
