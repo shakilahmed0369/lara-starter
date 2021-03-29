@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminUserController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,9 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
   Route::resource('/role', RoleController::class);
   // Admin User Routes
   Route::resource('/admin-user', AdminUserController::class);
+
+  //menu test route
+  Route::post('/menu/updaterow', [MenuController::class, 'updaterow']);
+  Route::resource('/menu', MenuController::class);
+  
 });
