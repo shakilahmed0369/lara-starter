@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class MenuController extends Controller
 {
@@ -15,9 +16,10 @@ class MenuController extends Controller
      */
     public function index()
     {
+        $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
         $menu        = Menu::all();
         $parentItems = Menu::where('parent_id', 0)->orderBy('order')->get();
-        return view('backend.pages.admin-aria.menu.index', compact('menu', 'parentItems'));
+        return view('backend.pages.admin-aria.menu.index', compact('menu', 'parentItems', 'permissions'));
     }
 
     public function updaterow(Request $request)
@@ -29,11 +31,11 @@ class MenuController extends Controller
         */
         foreach ($request->menu as $menu) {
             /* we will get the each parent id and
-            |  make there parent_id = 0 in db (0 goes for parent eliment)
+            | make there parent_id = 0 in db (0 goes for parent eliment)
             */
-            $ids[] = $menu['id'];
-            $menuParent            = Menu::find($menu['id']);
-            $menuParent->parent_id = 0;
+            $ids[]                      = $menu['id'];
+                 $menuParent            = Menu::find($menu['id']);
+                 $menuParent->parent_id = 0;
             $menuParent->save();
             if (isset($menu['children'])) {
                 /* 
@@ -41,9 +43,9 @@ class MenuController extends Controller
                 | id and assigen it to the parent id 
                 */
                 foreach ($menu['children'] as $menuId) {
-                    $ids[] = $menuId['id'];
-                    $menuChild            = Menu::find($menuId['id']);
-                    $menuChild->parent_id = $menu['id'];
+                    $ids[]                     = $menuId['id'];
+                         $menuChild            = Menu::find($menuId['id']);
+                         $menuChild->parent_id = $menu['id'];
                     $menuChild->save();
                 }
             }
@@ -75,6 +77,27 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        /* fild validateion */
+        $request->validate([
+            'name'        => 'required',
+            'uri'         => 'required|unique:menus,uri',
+            'icon'        => 'required',
+            'permissions' => 'required'
+        ]);
+        /* count current item in menu */
+        $menuItemCounter = Menu::count();
+
+        $menu              = new Menu();
+        $menu->name        = $request->name;
+        $menu->parent_id   = 0;
+        $menu->uri         = $request->uri;
+        $menu->icon        = $request->icon;
+        $menu->permissions = json_encode($request->permissions);
+        $menu->order       = $menuItemCounter + 1;
+        $menu->save();
+        toast('Menu item created!', 'success')->width('23rem');
+
+        return redirect()->route('admin.menu.index');
     }
 
     /**

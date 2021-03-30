@@ -1,83 +1,45 @@
 @extends('backend.layouts.master')
 @section('content')
 @section('extraCss')
-<style>
-        /**
- * Nestable
- */
-
-.dd { position: relative; display: block; margin: 0; padding: 0; max-width: 600px; list-style: none; font-size: 13px; line-height: 20px; }
-
-.dd-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
-.dd-list .dd-list { padding-left: 30px; }
-.dd-collapsed .dd-list { display: none; }
-
-.dd-item,
-.dd-empty,
-.dd-placeholder { display: block; position: relative; margin: 0; padding: 0; min-height: 20px; font-size: 13px; line-height: 20px; }
-
-.dd-handle { display: block; height: 30px; margin: 5px 0; padding: 5px 10px; color: #333; text-decoration: none; font-weight: bold; border: 1px solid #ccc;
-    background: #fafafa;
-    background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
-    background:    -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
-    background:         linear-gradient(top, #fafafa 0%, #eee 100%);
-    -webkit-border-radius: 3px;
-            border-radius: 3px;
-    box-sizing: border-box; -moz-box-sizing: border-box;
-}
-.dd-handle:hover { color: #2ea8e5; background: #fff; }
-
-.dd-item > button { display: block; position: relative; cursor: pointer; float: left; width: 25px; height: 20px; margin: 5px 0; padding: 0; text-indent: 100%; white-space: nowrap; overflow: hidden; border: 0; background: transparent; font-size: 12px; line-height: 1; text-align: center; font-weight: bold; }
-.dd-item > button:before { content: '+'; display: block; position: absolute; width: 100%; text-align: center; text-indent: 0; }
-.dd-item > button[data-action="collapse"]:before { content: '-'; }
-
-.dd-placeholder,
-.dd-empty { margin: 5px 0; padding: 0; min-height: 30px; background: #f2fbff; border: 1px dashed #b6bcbf; box-sizing: border-box; -moz-box-sizing: border-box; }
-.dd-empty { border: 1px dashed #bbb; min-height: 100px; background-color: #e5e5e5;
-    background-image: -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
-                      -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
-    background-image:    -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
-                         -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
-    background-image:         linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
-                              linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
-    background-size: 60px 60px;
-    background-position: 0 0, 30px 30px;
-}
-
-.dd-dragel { position: absolute; pointer-events: none; z-index: 9999; }
-.dd-dragel > .dd-item .dd-handle { margin-top: 0; }
-.dd-dragel .dd-handle {
-    -webkit-box-shadow: 2px 4px 6px 0 rgba(0,0,0,.1);
-            box-shadow: 2px 4px 6px 0 rgba(0,0,0,.1);
-}
-</style>
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/nestable/nestable.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/iconpicker/fontawesome-iconpicker.min.css') }}">
 @endsection
 <div class="header bg-primary pb-6"></div>
 <div class="container-fluid mt--6">
     <div class="row">
-        <div class="col">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header border-1">
                     <div class="row">
-                    <div class="col-6"><h3 class="mb-0">Roles</h3></div>
+                    <div class="col-6"><h3 class="mb-0">Menu</h3></div>
                         <div class="col-6 text-right">
-                            <a href="" class="btn-sm btn-success"><b><i class="fas fa-plus"></i> Add Role</b></a>
+													<button class="submit btn-sm btn-success"><b><i class="fas fa-save"></i>  Save Menu</b></button>
                         </div>
                     </div>
                 </div>
                     <div class="card-body">
-                        <div class="row">
-                        <div class="col-md-6">
                         <div class="dd">
                             <ol class="dd-list">
                                 @foreach ($parentItems as $parentItem)
                                 <li class="dd-item" data-id="{{ $parentItem->id }}">
-                                    <div class="dd-handle">{{ $parentItem->name }}</div>
+                                    <div class="dd-handle"><i class="{{ $parentItem->icon }}"></i>  {{ $parentItem->name }}
+																		<!--action buttons-->
+																		<div class="float-right">
+																			<a href="" class="btn-sm btn-primary ">Edit</a>
+																			<a href="" class="btn-sm btn-danger ">Delete</a>
+																		</div>
+																		</div>
                                     <ol class="dd-list">
                                         @foreach ($menu as $menuChild)
                                         @if ($parentItem->id == $menuChild->parent_id)
                                             <li class="dd-item" data-id="{{ $menuChild->id }}">
-                                                <div class="dd-handle">{{ $menuChild->name }}</div>
+                                                <div class="dd-handle"><i class="{{ $menuChild->icon }}"></i>  {{ $menuChild->name }}
+																								<!--action buttons-->
+																								<div class="float-right">
+																									<a href="" class="btn-sm btn-primary ">Edit</a>
+																									<a href="" class="btn-sm btn-danger ">Delete</a>
+																								</div>
+																								</div>
                                             </li>
                                         @endif  
                                         @endforeach
@@ -86,54 +48,144 @@
                                 @endforeach
                             </ol>
                         </div> 
-                        <button class="submit btn-sm btn-primary">submit</button>
-                        </div>
-
-                        <div class="col-md-6">
-                            <h1>hello</h1>
-                        </div>
-                  </div>
+                        
                 </div>
             </div>
         </div>
+				
+					<div class="col-md-6">
+						<div class="card">
+							<div class="card-header border-1">
+								<div class="row">
+									<div class="col-6"><h3 class="mb-0">Create a menu item</h3></div>
+											<div class="col-6 text-right">
+													<a href="" onclick="event.preventDefault(); $('.form').submit()" class="btn-sm btn-success"><b><i class="fas fa-save"></i>   Save Item</b></a>
+											</div>
+									</div>
+							</div>
+							<div class="card-body">
+
+								<form action="{{ route('admin.menu.store') }}" method="POST" class="form">
+									@csrf
+									<div class="form-group">
+										<label for="" class="form-control-label">Title</label>
+										<input name="name" class="form-control" type="text" value="" id="example-text-input">
+										@error('name') <small class="text-danger">{{ $message }}</small> @enderror 
+
+									</div>
+
+									<div class="form-group">
+										<label for="example-text-input" class="form-control-label">Url</label>
+										<input name="uri" class="form-control" type="text" value="" id="example-text-input">
+										@error('uri') <small class="text-danger">{{ $message }}</small> @enderror 
+
+									</div>
+
+									<div class="form-group">
+										<label for="example-text-input" class="form-control-label">Icon</label>
+										<input name="icon" class="form-control iconpicker" type="text" value="" id="example-text-input">
+										@error('icon') <small class="text-danger">{{ $message }}</small> @enderror 
+
+									</div>
+									<h3>{{ __('Permissions') }}</h3>
+									@error('permissions') <small class="text-danger">{{ $message }}</small> @enderror 
+
+									<br>
+									<div style="
+									height: 45vh;
+									overflow-x: hidden;
+									border: 1px solid #5e72e4;
+									padding: 6px;">						
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="checkAll custom-control-input" id="customCheck1">
+										<label class="custom-control-label" for="customCheck1">{{ __('Give All Permission') }}</label>
+									</div>
+									<hr class="m-2">
+					
+									@foreach ($permissions as $groupName => $permission )
+									<div class="row">
+										<div class="col-md-3">
+											<div class="custom-control custom-checkbox my-2">
+												<input onclick="selectByGroup('child-{{ $groupName }}', this)" type="checkbox" class="custom-control-input" id="parent-{{ $groupName }}">
+												<label class="custom-control-label" for="parent-{{ $groupName }}"><h4 class="text-danger">{{ $groupName }} *</h4></label>
+											</div>
+										</div>
+										<div class="col-md-9 child-{{ $groupName }}">
+											@foreach ($permission as $singlePermission)   
+											<div class="">
+												<div class="custom-control custom-checkbox">
+												<input name="permissions[]" type="checkbox" class="custom-control-input" id="{{ $singlePermission->name }}" value="{{ $singlePermission->name }}">
+												<label class="custom-control-label" for="{{ $singlePermission->name }}">{{ $singlePermission->name }}</label>
+											</div>
+											</div>
+											@endforeach
+										</div>
+									</div>
+									<hr class="m-2">
+									@endforeach
+								</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
     </div>
 </div>
 
 
     @section('extraJs')
-    <script>
-        
-    </script>
-        <script src="{{ asset('backend/assets/vendor/nestable/jquery.nestable.js') }}"></script>
-        <script>
-            $('.dd').nestable();
-            
+		<!-- Script links-->
+			<script src="{{ asset('backend/assets/vendor/nestable/jquery.nestable.js') }}"></script>
+			<script src="{{ asset('backend/assets/vendor/iconpicker/fontawesome-iconpicker.min.js') }}"></script>
+			<!-- calling icon piker -->
+			<script>
+				$('.iconpicker').iconpicker();
+			</script>
+			<script>
+				/* Nestable extra js scripts */
+					$('.dd').nestable();
+					$('.submit').on('click', function() {
+						$.ajaxSetup({
+								headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+								}
+						});
 
-            $('.submit').on('click', function() {
-                $.ajaxSetup({
-                 headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 }
-                 });
+						/* on change event */
+						let data = $('.dd').nestable('serialize');
+						// console.log(data);
+						let url = "{{ url('/admin/menu/updaterow') }}";
+						$.ajax({
+							type: "POST",
+							url: url,
+							data: {'menu': data},
+							dataType: 'json',
+							success: function(responce){
+									console.log(responce);
+							}
+						});
+					});   
+			</script>
 
+		<!-- scripts for permissions checkbox multi click-->
+		<script>
+			$(document).ready(function(){
+				$(".checkAll").click(function () {
+					$('input:checkbox').not(this).prop('checked', this.checked);
+				}); 
+			})
 
-                /* on change event */
-                let data = $('.dd').nestable('serialize');
-                // console.log(data);
-                let url = "{{ url('/admin/menu/updaterow') }}";
-                $.ajax({
-                type: "POST",
-                url: url,
-                data: {'menu': data},
-                dataType: 'json',
-                success: function(responce){
-                    console.log(responce);
-                }
-            });
+			function selectByGroup(childClass, parentClass){
+					const permissionGroup = $('#'+parentClass.id);
+					const checkPermission = $('.'+childClass+' input');
 
-            });
+					if(permissionGroup.is(':checked')){
+						checkPermission.prop('checked', true)
+					}else{
+						checkPermission.prop('checked', false)
+					}
+				}
+		</script>
 
-            
-        </script>
     @endsection
 @endsection

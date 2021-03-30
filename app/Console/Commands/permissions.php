@@ -49,8 +49,7 @@ class permissions extends Command
       }
 
       $this->info('Done...');
-    } elseif ($deletePermission) {
-
+    } elseif ($deletePermission) {  
       $this->info('Deleteing Permission');
       foreach ($deletePermission as $permission) {
         $destroy = Permission::where('name', $permission . $model)->orWhere('group_name', $model);
