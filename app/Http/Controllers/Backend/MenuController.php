@@ -162,6 +162,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $distroy = Menu::find($id);
+       $distroy->delete();
+       return response(true);
     }
 }

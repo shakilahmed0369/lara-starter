@@ -27,7 +27,7 @@
 																		<div class="float-right" style="margin-top: -35px;
 																		margin-right: 10px;">
 																			<a href="{{ route('admin.menu.edit', $parentItem->id) }}" class="btn-sm btn-primary ">Edit</a>
-																			<a href="" class="btn-sm btn-danger ">Delete</a>
+																			<a href="" id="{{ $parentItem->id }}" class="btn-sm btn-danger delete">Delete</a>
 																		</div>
                                     <ol class="dd-list">
                                         @foreach ($menu as $menuChild)
@@ -37,7 +37,7 @@
 																								<!--action buttons-->
 																								<div class="float-right">
 																									<a href="{{ route('admin.menu.edit', $menuChild->id) }}" class="btn-sm btn-primary ">Edit</a>
-																									<a href="" class="btn-sm btn-danger ">Delete</a>
+																									<a href="" id="{{ $menuChild->id }}" class="btn-sm btn-danger delete">Delete</a>
 																								</div>
 																								</div>
                                             </li>
@@ -133,59 +133,85 @@
 </div>
 
 
-    @section('extraJs')
-		<!-- Script links-->
-			<script src="{{ asset('backend/assets/vendor/nestable/jquery.nestable.js') }}"></script>
-			<script src="{{ asset('backend/assets/vendor/iconpicker/fontawesome-iconpicker.min.js') }}"></script>
-			<!-- calling icon piker -->
-			<script>
-				$('.iconpicker').iconpicker();
-			</script>
-			<script>
-				/* Nestable extra js scripts */
-					$('.dd').nestable();
-					$('.submit').on('click', function() {
-						$.ajaxSetup({
-								headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-								}
-						});
+	@section('extraJs')
+	<!-- Script links-->
+		<script src="{{ asset('backend/assets/vendor/nestable/jquery.nestable.js') }}"></script>
+		<script src="{{ asset('backend/assets/vendor/iconpicker/fontawesome-iconpicker.min.js') }}"></script>
 
-						/* on change event */
-						let data = $('.dd').nestable('serialize');
-						// console.log(data);
-						let url = "{{ url('/admin/menu/updaterow') }}";
-						$.ajax({
-							type: "POST",
-							url: url,
-							data: {'menu': data},
-							dataType: 'json',
-							success: function(responce){
-									console.log(responce);
-							}
-						});
-					});   
-			</script>
-
-		<!-- scripts for permissions checkbox multi click-->
+		<!-- calling icon piker -->
 		<script>
-			$(document).ready(function(){
-				$(".checkAll").click(function () {
-					$('input:checkbox').not(this).prop('checked', this.checked);
-				}); 
-			})
-
-			function selectByGroup(childClass, parentClass){
-					const permissionGroup = $('#'+parentClass.id);
-					const checkPermission = $('.'+childClass+' input');
-
-					if(permissionGroup.is(':checked')){
-						checkPermission.prop('checked', true)
-					}else{
-						checkPermission.prop('checked', false)
-					}
-				}
+			$('.iconpicker').iconpicker();
+		</script>
+		<script>
+			$.ajaxSetup({
+						headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						}
+			});
+			/* Nestable extra js scripts */
+				$('.dd').nestable();
+				$('.submit').on('click', function() {
+					/* on change event */
+					let data = $('.dd').nestable('serialize');
+					// console.log(data);
+					let url = "{{ url('/admin/menu/updaterow') }}";
+					$.ajax({
+						type: "POST",
+						url: url,
+						data: {'menu': data},
+						dataType: 'json',
+						success: function(responce){
+								location.reload();
+						}
+					});
+				});   
 		</script>
 
-    @endsection
+	<!-- scripts for permissions checkbox multi click-->
+	<script>
+		$(document).ready(function(){
+			$(".checkAll").click(function () {
+				$('input:checkbox').not(this).prop('checked', this.checked);
+			}); 
+		})
+
+		function selectByGroup(childClass, parentClass){
+				const permissionGroup = $('#'+parentClass.id);
+				const checkPermission = $('.'+childClass+' input');
+
+				if(permissionGroup.is(':checked')){
+					checkPermission.prop('checked', true)
+				}else{
+					checkPermission.prop('checked', false)
+				}
+			}
+	</script>
+
+	{{-- delete nestable item with sweet alert --}}
+	<script>
+		$('.delete').on('click', function(){
+			event.preventDefault();
+			let id = $(this).attr('id');
+			swal({
+				title: "Are you sure?",
+				text: "Once deleted, you will not be able to recover this imaginary file!",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+					$.ajax({
+							type: "DELETE",
+							url: "menu/" + id,
+							success: function (response) {
+								location.reload()
+							}
+					});
+				}
+			});
+		})
+	</script>
+
+	@endsection
 @endsection

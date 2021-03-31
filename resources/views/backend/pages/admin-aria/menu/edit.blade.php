@@ -27,7 +27,7 @@
                                 <div class="float-right" style="margin-top: -35px;
                                 margin-right: 10px;">
                                   <a href="{{ route('admin.menu.edit', $parentItem->id) }}" class="btn-sm btn-primary ">Edit</a>
-                                  <a href="" class="btn-sm btn-danger ">Delete</a>
+                                  <a href="" id="{{ $parentItem->id }}" class="btn-sm btn-danger delete">Delete</a>
                                 </div>
                                 <ol class="dd-list">
                                     @foreach ($menu as $menuChild)
@@ -37,7 +37,7 @@
                                             <!--action buttons-->
                                             <div class="float-right">
                                               <a href="{{ route('admin.menu.edit', $menuChild->id) }}" class="btn-sm btn-primary ">Edit</a>
-                                              <a href="" class="btn-sm btn-danger ">Delete</a>
+                                              <a href="" id="{{ $menuChild->id }}"  class="btn-sm btn-danger delete">Delete</a>
                                             </div>
                                             </div>
                                         </li>
@@ -56,8 +56,9 @@
 						<div class="card">
 							<div class="card-header border-1">
 								<div class="row">
-									<div class="col-6"><h3 class="mb-0">Create a menu item</h3></div>
+									<div class="col-6"><h3 class="mb-0">Edit menu item</h3></div>
 											<div class="col-6 text-right">
+												<a href="{{ route('admin.menu.index') }}" class="btn-sm btn-warning"><i class="fas fa-arrow-left"></i> <b>Go back</b></a>
 													<a href="" onclick="event.preventDefault(); $('.form').submit()" class="btn-sm btn-success"><b><i class="fas fa-save"></i>   Save Item</b></a>
 											</div>
 									</div>
@@ -115,7 +116,7 @@
 											<div class="">
 												<div class="custom-control custom-checkbox">
 												<input
-                        @if ($editValue->permissions)
+                        @if (empty($editValue->permissions))
                         @foreach (json_decode($editValue->permissions) as $check)
                         @if ($singlePermission->name == $check)
                             checked
@@ -145,6 +146,15 @@
 		<!-- Script links-->
 			<script src="{{ asset('backend/assets/vendor/nestable/jquery.nestable.js') }}"></script>
 			<script src="{{ asset('backend/assets/vendor/iconpicker/fontawesome-iconpicker.min.js') }}"></script>
+			<!--ajax token--->
+			<script>
+				$.ajaxSetup({
+					headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+			</script>
+
 			<!-- calling icon piker -->
 			<script>
 				$('.iconpicker').iconpicker();
@@ -153,11 +163,6 @@
 				/* Nestable extra js scripts */
 					$('.dd').nestable();
 					$('.submit').on('click', function() {
-						$.ajaxSetup({
-								headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-								}
-						});
 
 						/* on change event */
 						let data = $('.dd').nestable('serialize');
@@ -194,6 +199,33 @@
 					}
 				}
 		</script>
+
+    	{{-- delete nestable item with sweet alert --}}
+    <script>
+      $('.delete').on('click', function(){
+        event.preventDefault();
+        let id = $(this).attr('id');
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this imaginary file!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            console.log(id);
+            $.ajax({
+                type: "DELETE",
+                url: "/admin/menu/" + id,
+                success: function (response) {
+                  window.location.replace('/admin/menu')
+                }
+            });
+          }
+        });
+      })
+    </script>
 
     @endsection
 @endsection

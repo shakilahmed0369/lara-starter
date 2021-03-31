@@ -96,7 +96,7 @@
         });
     });
     
-     </script>
+  </script>
 </body>
 
 </html>
