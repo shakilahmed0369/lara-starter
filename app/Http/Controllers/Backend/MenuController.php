@@ -82,7 +82,6 @@ class MenuController extends Controller
             'name'        => 'required',
             'uri'         => 'required|unique:menus,uri',
             'icon'        => 'required',
-            'permissions' => 'required'
         ]);
         /* count current item in menu */
         $menuItemCounter = Menu::count();
@@ -119,7 +118,11 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editValue = Menu::find($id);
+        $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
+        $menu        = Menu::all();
+        $parentItems = Menu::where('parent_id', 0)->orderBy('order')->get();
+        return view('backend.pages.admin-aria.menu.edit', compact('menu', 'parentItems', 'permissions', 'editValue'));
     }
 
     /**
@@ -131,6 +134,24 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /* fild validateion */
+        $request->validate([
+            'name'        => 'required',
+            'uri'         => 'required|unique:menus,uri,'.$id,
+            'icon'        => 'required',
+        ]);
+        /* count current item in menu */
+        $menuItemCounter = Menu::count();
+
+        $menu              = Menu::find($id);
+        $menu->name        = $request->name;
+        $menu->uri         = $request->uri;
+        $menu->icon        = $request->icon;
+        $menu->permissions = json_encode($request->permissions);
+        $menu->save();
+        toast('Menu item Updated!', 'success')->width('23rem');
+
+        return redirect()->route('admin.menu.index');
     }
 
     /**

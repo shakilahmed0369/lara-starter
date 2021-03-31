@@ -17,38 +17,37 @@
                         </div>
                     </div>
                 </div>
-                    <div class="card-body">
-                        <div class="dd">
-                            <ol class="dd-list">
-                                @foreach ($parentItems as $parentItem)
-                                <li class="dd-item" data-id="{{ $parentItem->id }}">
-                                    <div class="dd-handle"><i class="{{ $parentItem->icon }}"></i>  {{ $parentItem->name }}</div>
-																		<!--action buttons-->
-																		<div class="float-right" style="margin-top: -35px;
-																		margin-right: 10px;">
-																			<a href="{{ route('admin.menu.edit', $parentItem->id) }}" class="btn-sm btn-primary ">Edit</a>
-																			<a href="" class="btn-sm btn-danger ">Delete</a>
-																		</div>
-                                    <ol class="dd-list">
-                                        @foreach ($menu as $menuChild)
-                                        @if ($parentItem->id == $menuChild->parent_id)
-                                            <li class="dd-item" data-id="{{ $menuChild->id }}">
-                                                <div class="dd-handle"><i class="{{ $menuChild->icon }}"></i>  {{ $menuChild->name }}
-																								<!--action buttons-->
-																								<div class="float-right">
-																									<a href="{{ route('admin.menu.edit', $menuChild->id) }}" class="btn-sm btn-primary ">Edit</a>
-																									<a href="" class="btn-sm btn-danger ">Delete</a>
-																								</div>
-																								</div>
-                                            </li>
-                                        @endif  
-                                        @endforeach
-                                    </ol>
-                                </li>
-                                @endforeach
-                            </ol>
-                        </div> 
-                        
+                <div class="card-body">
+                    <div class="dd">
+                        <ol class="dd-list">
+                            @foreach ($parentItems as $parentItem)
+                            <li class="dd-item" data-id="{{ $parentItem->id }}">
+                                <div class="dd-handle"><i class="{{ $parentItem->icon }}"></i>  {{ $parentItem->name }}</div>
+                                <!--action buttons-->
+                                <div class="float-right" style="margin-top: -35px;
+                                margin-right: 10px;">
+                                  <a href="{{ route('admin.menu.edit', $parentItem->id) }}" class="btn-sm btn-primary ">Edit</a>
+                                  <a href="" class="btn-sm btn-danger ">Delete</a>
+                                </div>
+                                <ol class="dd-list">
+                                    @foreach ($menu as $menuChild)
+                                    @if ($parentItem->id == $menuChild->parent_id)
+                                        <li class="dd-item" data-id="{{ $menuChild->id }}">
+                                            <div class="dd-handle"><i class="{{ $menuChild->icon }}"></i>  {{ $menuChild->name }}
+                                            <!--action buttons-->
+                                            <div class="float-right">
+                                              <a href="{{ route('admin.menu.edit', $menuChild->id) }}" class="btn-sm btn-primary ">Edit</a>
+                                              <a href="" class="btn-sm btn-danger ">Delete</a>
+                                            </div>
+                                            </div>
+                                        </li>
+                                    @endif  
+                                    @endforeach
+                                </ol>
+                            </li>
+                            @endforeach
+                        </ol>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -65,25 +64,26 @@
 							</div>
 							<div class="card-body">
 
-								<form action="{{ route('admin.menu.store') }}" method="POST" class="form">
+								<form action="{{ route('admin.menu.update', $editValue->id) }}" method="POST" class="form">
 									@csrf
+                  @method('PUT')
 									<div class="form-group">
 										<label for="" class="form-control-label">Title</label>
-										<input name="name" class="form-control" type="text" value="" id="example-text-input">
+										<input name="name" class="form-control" type="text" value="{{ $editValue->name }}" id="example-text-input">
 										@error('name') <small class="text-danger">{{ $message }}</small> @enderror 
 
 									</div>
 
 									<div class="form-group">
 										<label for="example-text-input" class="form-control-label">Url</label>
-										<input name="uri" class="form-control" type="text" value="" id="example-text-input">
+										<input name="uri" class="form-control" type="text" value="{{ $editValue->uri }}" id="example-text-input">
 										@error('uri') <small class="text-danger">{{ $message }}</small> @enderror 
 
 									</div>
 
 									<div class="form-group">
 										<label for="example-text-input" class="form-control-label">Icon</label>
-										<input name="icon" class="form-control iconpicker" type="text" value="" id="example-text-input">
+										<input name="icon" class="form-control iconpicker" type="text" value="{{ $editValue->icon }}" id="example-text-input">
 										@error('icon') <small class="text-danger">{{ $message }}</small> @enderror 
 
 									</div>
@@ -114,7 +114,15 @@
 											@foreach ($permission as $singlePermission)   
 											<div class="">
 												<div class="custom-control custom-checkbox">
-												<input name="permissions[]" type="checkbox" class="custom-control-input" id="{{ $singlePermission->name }}" value="{{ $singlePermission->name }}">
+												<input
+                        @if ($editValue->permissions)
+                        @foreach (json_decode($editValue->permissions) as $check)
+                        @if ($singlePermission->name == $check)
+                            checked
+                        @endif
+                        @endforeach
+                        @endif
+                        name="permissions[]" type="checkbox" class="custom-control-input" id="{{ $singlePermission->name }}" value="{{ $singlePermission->name }}">
 												<label class="custom-control-label" for="{{ $singlePermission->name }}">{{ $singlePermission->name }}</label>
 											</div>
 											</div>
