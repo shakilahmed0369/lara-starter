@@ -43,16 +43,21 @@
                     <i class="{{ $parentItem->icon }}"></i>
                     <span class="nav-link-text">{{ $parentItem->name }}</span>
                   </a>
-
-                  <ul class="collapse" id="collapse-{{ $parentItem->id }}">
+                  <ul class="collapse
+                  @foreach ($allMenuItem as $childItem)
+                  @if ($parentItem->id == $childItem->parent_id)
+                  {{ (request()->is($childItem->uri)) ? 'show' : '' }}
+                  @endif
+                  @endforeach
+                  " id="collapse-{{ $parentItem->id }}">
                     @foreach ($allMenuItem as $childItem)
                         @if ($parentItem->id == $childItem->parent_id)
-                        <li class="nav-item"><a class="nav-link" href="{{ url($childItem->uri) }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
+                        <li class="nav-item {{ (request()->is($childItem->uri)) ? 'active' : '' }}"><a class="nav-link" href="{{ url($childItem->uri) }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
                         @endif
                     @endforeach
                   </ul>
                 @else
-                  <a class="nav-link" href="{{ url($parentItem->uri) }}" role="button">
+                  <a class="nav-link {{ (request()->is($parentItem->uri)) ? 'active' : '' }}" href="{{ url($parentItem->uri) }}" role="button">
                     <i class="{{ $parentItem->icon }}"></i>
                     <span class="nav-link-text">{{ $parentItem->name }}</span>
                   </a>
