@@ -34,11 +34,12 @@
                                         @if ($parentItem->id == $menuChild->parent_id)
                                             <li class="dd-item" data-id="{{ $menuChild->id }}">
                                                 <div class="dd-handle"><i class="{{ $menuChild->icon }}"></i>  {{ $menuChild->name }}
+																								</div>
 																								<!--action buttons-->
-																								<div class="float-right">
+																								<div class="float-right" style="margin-top: -35px;
+																								margin-right: 10px;">
 																									<a href="{{ route('admin.menu.edit', $menuChild->id) }}" class="btn-sm btn-primary ">Edit</a>
 																									<a href="" id="{{ $menuChild->id }}" class="btn-sm btn-danger delete">Delete</a>
-																								</div>
 																								</div>
                                             </li>
                                         @endif  

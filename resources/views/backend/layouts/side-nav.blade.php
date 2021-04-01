@@ -27,13 +27,14 @@
 
             {{-- testing --}}
 
-            <li class="nav-item">
+            
               @php
               /* menu query's */
                 $allMenuItem = DB::table('menus')->get();
                 $parentMenuItem = DB::table('menus')->where('parent_id', 0)->get();
               @endphp
               @foreach ($parentMenuItem as $parentItem)
+              <li class="nav-item">
                 @php
                   $hasChild = DB::table('menus')->where('parent_id', $parentItem->id)->get();
                 @endphp
@@ -46,18 +47,18 @@
                   <ul class="collapse" id="collapse-{{ $parentItem->id }}">
                     @foreach ($allMenuItem as $childItem)
                         @if ($parentItem->id == $childItem->parent_id)
-                        <li class="nav-item"><a class="nav-link" href="{{ $childItem->uri }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url($childItem->uri) }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
                         @endif
                     @endforeach
-                </ul>
+                  </ul>
                 @else
-                  <a class="nav-link" href="{{ $parentItem->uri }}" role="button">
+                  <a class="nav-link" href="{{ url($parentItem->uri) }}" role="button">
                     <i class="{{ $parentItem->icon }}"></i>
                     <span class="nav-link-text">{{ $parentItem->name }}</span>
                   </a>
                 @endif
+              </li>
               @endforeach
-            </li>
 
             <li class="nav-item">
               <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
