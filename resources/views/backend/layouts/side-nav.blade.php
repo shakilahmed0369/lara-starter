@@ -46,7 +46,7 @@
                   <ul class="collapse" id="collapse-{{ $parentItem->id }}">
                     @foreach ($allMenuItem as $childItem)
                         @if ($parentItem->id == $childItem->parent_id)
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.role.index') }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ $childItem->uri }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
                         @endif
                     @endforeach
                 </ul>
