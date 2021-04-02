@@ -119,6 +119,7 @@ class MenuController extends Controller
     public function edit($id)
     {
         $editValue = Menu::find($id);
+        // return [$editValue->permissions];
         $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
         $menu        = Menu::all();
         $parentItems = Menu::where('parent_id', 0)->orderBy('order')->get();
@@ -162,8 +163,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-       $distroy = Menu::find($id);
-       $distroy->delete();
+       $destroy = Menu::find($id);
+       $destroy->delete();
        return response(true);
     }
 }

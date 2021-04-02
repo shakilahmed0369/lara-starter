@@ -34,11 +34,12 @@
                                     @if ($parentItem->id == $menuChild->parent_id)
                                         <li class="dd-item" data-id="{{ $menuChild->id }}">
                                             <div class="dd-handle"><i class="{{ $menuChild->icon }}"></i>  {{ $menuChild->name }}
-                                            <!--action buttons-->
-                                            <div class="float-right">
+                                            </div>
+																						<!--action buttons-->
+                                            <div class="float-right" style="margin-top: -35px;
+																						margin-right: 10px;">
                                               <a href="{{ route('admin.menu.edit', $menuChild->id) }}" class="btn-sm btn-primary ">Edit</a>
                                               <a href="" id="{{ $menuChild->id }}"  class="btn-sm btn-danger delete">Delete</a>
-                                            </div>
                                             </div>
                                         </li>
                                     @endif  
@@ -116,13 +117,14 @@
 											<div class="">
 												<div class="custom-control custom-checkbox">
 												<input
-                        @if (empty($editValue->permissions))
+                        @if ($editValue->permissions != 'null')
                         @foreach (json_decode($editValue->permissions) as $check)
                         @if ($singlePermission->name == $check)
                             checked
                         @endif
                         @endforeach
                         @endif
+												
                         name="permissions[]" type="checkbox" class="custom-control-input" id="{{ $singlePermission->name }}" value="{{ $singlePermission->name }}">
 												<label class="custom-control-label" for="{{ $singlePermission->name }}">{{ $singlePermission->name }}</label>
 											</div>

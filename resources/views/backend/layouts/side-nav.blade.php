@@ -39,10 +39,14 @@
                   $hasChild = DB::table('menus')->where('parent_id', $parentItem->id)->get();
                 @endphp
                 @if (count($hasChild)>0)
+                @if (auth('admin')->user()->hasAnyPermission(json_decode($parentItem->permissions)) or auth('admin')->user()->hasRole('super-admin'))
+
                   <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapse-{{ $parentItem->id }}" role="button">
                     <i class="{{ $parentItem->icon }}"></i>
                     <span class="nav-link-text">{{ $parentItem->name }}</span>
                   </a>
+                @endif
+                  
                   <ul class="collapse
                   @foreach ($allMenuItem as $childItem)
                   @if ($parentItem->id == $childItem->parent_id)
@@ -52,19 +56,29 @@
                   " id="collapse-{{ $parentItem->id }}">
                     @foreach ($allMenuItem as $childItem)
                         @if ($parentItem->id == $childItem->parent_id)
+                        @if (auth('admin')->user()->hasAnyPermission(json_decode($childItem->permissions)) or auth('admin')->user()->hasRole('super-admin'))
                         <li class="nav-item {{ (request()->is($childItem->uri)) ? 'active' : '' }}"><a class="nav-link" href="{{ url($childItem->uri) }}"><i class="{{ $childItem->icon }}"></i>{{ $childItem->name }}</a></li>
+                        @endif
                         @endif
                     @endforeach
                   </ul>
                 @else
+                  @if (auth('admin')->user()->hasAnyPermission(json_decode($parentItem->permissions)) or auth('admin')->user()->hasRole('super-admin'))
                   <a class="nav-link {{ (request()->is($parentItem->uri)) ? 'active' : '' }}" href="{{ url($parentItem->uri) }}" role="button">
                     <i class="{{ $parentItem->icon }}"></i>
                     <span class="nav-link-text">{{ $parentItem->name }}</span>
                   </a>
+                  @endif
                 @endif
               </li>
               @endforeach
 
+
+
+      
+                
+            @if (auth('admin')->user()->hasAnyPermission(['read-Blog', 'create-Blog']) or auth('admin')->user()->hasRole('super-admin'))
+            
             <li class="nav-item">
               <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
                 <i class="ni ni-planet text-orange"></i>
@@ -76,6 +90,9 @@
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>hello</a></li>
               </ul>
             </li>
+                
+            @endif
+           
           </ul>
         </div>
       </div>
