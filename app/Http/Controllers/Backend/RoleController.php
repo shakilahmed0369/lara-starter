@@ -15,7 +15,7 @@ class RoleController extends Controller
     $this->middleware('admin.auth');
     $this->middleware(['permission:read-Role','auth:admin'])->only(['index']);
     $this->middleware(['permission:create-Role','auth:admin'])->only(['create', 'store']);
-    $this->middleware(['permission:editRole','auth:admin'])->only(['edit', 'update']);
+    $this->middleware(['permission:edit-Role','auth:admin'])->only(['edit', 'update']);
   }
 
   /**

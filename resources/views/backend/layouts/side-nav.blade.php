@@ -24,10 +24,7 @@
               </ul>
             </li> --}}
             {{-- @endif --}}
-
-            {{-- testing --}}
-
-            
+  
               @php
               /* menu query's */
                 $allMenuItem = DB::table('menus')->get();
@@ -72,12 +69,7 @@
                 @endif
               </li>
               @endforeach
-
-
-
-      
-                
-            @if (auth('admin')->user()->hasAnyPermission(['read-Blog', 'create-Blog']) or auth('admin')->user()->hasRole('super-admin'))
+    
             
             <li class="nav-item">
               <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
@@ -91,7 +83,6 @@
               </ul>
             </li>
                 
-            @endif
            
           </ul>
         </div>
