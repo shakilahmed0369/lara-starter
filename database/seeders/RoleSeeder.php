@@ -37,6 +37,16 @@ class RoleSeeder extends Seeder
             'edit-Admin-User',
             'delete-Admin-User'
           ]
+        ],
+        [
+            'group_name' => 'Menu',
+            'permission' =>
+            [
+              'read-Menu',
+              'create-Menu',
+              'edit-Menu',
+              'delete-Menu'
+            ]
         ]
       ];
     //creating role
@@ -46,7 +56,7 @@ class RoleSeeder extends Seeder
     $user->assignRole('super-admin');
 
     foreach ($permissions as $permission) {
-      //create permissons
+      //create premisses
       foreach ($permission['permission'] as $singlePermission) {
         $permission = Permission::create(['name' => $singlePermission, 'group_name' => $permission['group_name'], 'guard_name' => 'admin']);
         // assign each permission to role

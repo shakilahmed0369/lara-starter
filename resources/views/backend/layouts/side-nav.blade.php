@@ -11,20 +11,7 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
           <ul class="navbar-nav" >
- 
-            {{-- @if(auth()->guard('admin')->user()->can('create-Admin-User')) --}}
-            {{-- <li class="nav-item">
-              <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
-                <i class="ni ni-badge text-dark"></i>
-                <span class="nav-link-text">Admin Control</span>
-              </a>
-              <ul class="collapse" id="collapseExample">
-                <li class="nav-item"><a class="nav-link" href="{{ route('admin.role.index') }}"><i class="fas fa-star-of-life"></i>Roles</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('admin.admin-user.index') }}"><i class="fas fa-star-of-life"></i>Users</a></li>
-              </ul>
-            </li> --}}
-            {{-- @endif --}}
-  
+
               @php
               /* menu query's */
                 $allMenuItem = DB::table('menus')->get();
@@ -37,13 +24,11 @@
                 @endphp
                 @if (count($hasChild)>0)
                 @if (auth('admin')->user()->hasAnyPermission(json_decode($parentItem->permissions)) or auth('admin')->user()->hasRole('super-admin'))
-
                   <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapse-{{ $parentItem->id }}" role="button">
                     <i class="{{ $parentItem->icon }}"></i>
                     <span class="nav-link-text">{{ $parentItem->name }}</span>
                   </a>
                 @endif
-                  
                   <ul class="collapse
                   @foreach ($allMenuItem as $childItem)
                   @if ($parentItem->id == $childItem->parent_id)
@@ -69,21 +54,6 @@
                 @endif
               </li>
               @endforeach
-    
-            
-            <li class="nav-item">
-              <a class="nav-link" onclick="event.preventDefault()" data-toggle="collapse" href="#collapseExample" role="button">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">Icons</span>
-              </a>
-              <ul class="collapse" id="collapseExample">
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>hello</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>hello</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-star-of-life"></i>hello</a></li>
-              </ul>
-            </li>
-                
-           
           </ul>
         </div>
       </div>

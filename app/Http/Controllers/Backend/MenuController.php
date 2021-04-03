@@ -9,6 +9,17 @@ use Spatie\Permission\Models\Permission;
 
 class MenuController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin.auth');
+        $this->middleware(['permission:read-Menu','auth:admin'])->only(['index']);
+        $this->middleware(['permission:create-Menu','auth:admin'])->only(['create', 'store']);
+        $this->middleware(['permission:edit-Menu','auth:admin'])->only(['edit', 'update']);
+        $this->middleware(['permission:delete-Menu','auth:admin'])->only(['destroy']);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +36,7 @@ class MenuController extends Controller
     public function updaterow(Request $request)
     {
         $ids = [];
-        /* gettign a json object from $request 
+        /* getting a json object from $request 
         |  and the object will carry parent ids
         |  and child ids with in it
         */
@@ -40,7 +51,7 @@ class MenuController extends Controller
             if (isset($menu['children'])) {
                 /* 
                 | if menu have any child then we will get that
-                | id and assigen it to the parent id 
+                | id and assign it to the parent id 
                 */
                 foreach ($menu['children'] as $menuId) {
                     $ids[]                     = $menuId['id'];
@@ -77,7 +88,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        /* fild validateion */
+        /* filed validation */
         $request->validate([
             'name'        => 'required',
             'uri'         => 'required|unique:menus,uri',
@@ -97,17 +108,6 @@ class MenuController extends Controller
         toast('Menu item created!', 'success')->width('23rem');
 
         return redirect()->route('admin.menu.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -135,7 +135,7 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /* fild validateion */
+        /* filed validation */
         $request->validate([
             'name'        => 'required',
             'uri'         => 'required|unique:menus,uri,'.$id,
