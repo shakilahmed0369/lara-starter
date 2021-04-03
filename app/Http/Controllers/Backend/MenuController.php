@@ -14,11 +14,10 @@ class MenuController extends Controller
     {
         $this->middleware('admin.auth');
         $this->middleware(['permission:read-Menu','auth:admin'])->only(['index']);
-        $this->middleware(['permission:create-Menu','auth:admin'])->only(['create', 'store']);
+        $this->middleware(['permission:create-Menu','auth:admin'])->only(['updaterow', 'store']);
         $this->middleware(['permission:edit-Menu','auth:admin'])->only(['edit', 'update']);
         $this->middleware(['permission:delete-Menu','auth:admin'])->only(['destroy']);
     }
-
 
     /**
      * Display a listing of the resource.
@@ -42,7 +41,7 @@ class MenuController extends Controller
         */
         foreach ($request->menu as $menu) {
             /* we will get the each parent id and
-            | make there parent_id = 0 in db (0 goes for parent eliment)
+            | make there parent_id = 0 in db (0 goes for parent element)
             */
             $ids[]                      = $menu['id'];
                  $menuParent            = Menu::find($menu['id']);
@@ -68,16 +67,6 @@ class MenuController extends Controller
             $menuOrder->save();
         }
         return response($ids);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
