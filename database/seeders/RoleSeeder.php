@@ -19,15 +19,16 @@ class RoleSeeder extends Seeder
     $permissions =
       [
         [
-          'group_name' => 'Role',
+          'group_name' => 'Menu',
           'permission' =>
           [
-            'read-Role',
-            'create-Role',
-            'edit-Role',
-            'delete-Role'
+            'read-Menu',
+            'create-Menu',
+            'edit-Menu',
+            'delete-Menu'
           ]
         ],
+        
         [
           'group_name' => 'Admin-User',
           'permission' =>
@@ -37,17 +38,19 @@ class RoleSeeder extends Seeder
             'edit-Admin-User',
             'delete-Admin-User'
           ]
-        ],
+          ],
+
         [
-            'group_name' => 'Menu',
+            'group_name' => 'Role',
             'permission' =>
             [
-              'read-Menu',
-              'create-Menu',
-              'edit-Menu',
-              'delete-Menu'
+              'read-Role',
+              'create-Role',
+              'edit-Role',
+              'delete-Role'
             ]
-        ]
+          ]
+        
       ];
     //creating role
     $role = Role::create(['name' => 'super-admin', 'guard_name' => 'admin']);

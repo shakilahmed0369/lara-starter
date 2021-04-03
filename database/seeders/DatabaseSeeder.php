@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Admin::factory(1)->create();
         $this->call(RoleSeeder::class);
+        $this->call(MenuSeeder::class);
     }
 }

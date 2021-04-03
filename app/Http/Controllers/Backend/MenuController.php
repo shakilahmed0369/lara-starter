@@ -154,6 +154,7 @@ class MenuController extends Controller
     {
        $destroy = Menu::find($id);
        $destroy->delete();
+       toast('Menu item Deleted!', 'success')->width('23rem');
        return response(true);
     }
 }
