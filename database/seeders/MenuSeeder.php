@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Menu;
 use Illuminate\Database\Seeder;
 use DB;
 
@@ -23,6 +22,6 @@ class MenuSeeder extends Seeder
             array('id' => '15','parent_id' => '0','order' => '4','name' => 'Admin Aria','icon' => 'fas fa-hammer','uri' => 'admin-aria','permissions' => '["read-Menu"]','created_at' => '2021-04-01 02:53:44','updated_at' => '2021-04-03 04:47:44'),
             array('id' => '16','parent_id' => '15','order' => '5','name' => 'Menu','icon' => 'fas fa-bars','uri' => 'admin/menu','permissions' => '["read-Menu","create-Menu","edit-Menu","delete-Menu"]','created_at' => '2021-04-01 02:54:10','updated_at' => '2021-04-03 04:48:46')
           );
-        DB::table('menus')->insert($menus);
+        DB:: table('menus')->insert($menus);
     }
 }

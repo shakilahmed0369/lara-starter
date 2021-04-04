@@ -41,8 +41,8 @@ class AdminUserTable extends Component
   public function remove($roleId)
   {
     if (auth()->guard('admin')->user()->can('delete-Admin-User')) {
-      $distroyRole = Admin::findOrFail($roleId);
-      $distroyRole->delete();
+      $destroyRole = Admin::findOrFail($roleId);
+      $destroyRole->delete();
       /* Write Delete Logic */
       $this->dispatchBrowserEvent('swal:modal', [
         'type'    => 'success',
