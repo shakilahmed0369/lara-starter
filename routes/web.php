@@ -38,5 +38,7 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
   /* Profile Routes */
   Route::get('/admin-profile', [AdminProfileController::class, 'index'])->name('profile');
   Route::put('/admin-profile/update/{id}', [AdminProfileController::class, 'update'])->name('profile.update');
-  
+
+  /* Env Editor Routes */
+  Route::get('/env-editor', function(){ return view('vendor.geo-sv.env-editor.index'); });
 });

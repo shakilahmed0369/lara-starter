@@ -12,6 +12,7 @@
         "bmatovu/multi-auth": "^10.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "geo-sot/laravel-env-editor": "dev-master",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
