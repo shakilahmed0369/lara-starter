@@ -53,7 +53,7 @@ class AdminUserController extends Controller
       'name' => 'required|max:100',
       'email' => 'required|email|max:200|unique:admins,email',
       'password' => 'required|min:6',
-      'password_confirmation' => 'required_with:password|min:6',
+      'password_confirmation' => 'required_with:password|same:password|min:6',
       'avatar' => 'image',
       'role' => 'required'
     ]);
@@ -154,7 +154,7 @@ class AdminUserController extends Controller
     if ($request->filled('password') or $request->filled('confirm_password')) {
       $request->validate([
         'password' => 'required|min:6',
-        'password_confirmation' => 'required_with:password|min:6',
+        'password_confirmation' => 'required_with:password|same:password|min:6',
       ]);
     }
 
