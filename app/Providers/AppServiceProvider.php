@@ -24,7 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
- 
+        /* blocking this route globally for
+         * security issue :)
+         */
+        if(request()->is('backup')){
+           return abort(404);
+        }
 
     }
 }

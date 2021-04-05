@@ -29885,3 +29885,7 @@ li .active{
 a .active{
     background: #dbdbdbb3 !important;
 }
+
+.btn.active{
+    background: #dbdbdbb3 !important;
+}

@@ -73,7 +73,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ asset('storage/backend/avatar/'. auth('admin')->user()->avatar) }}">
+                  <img alt="Image placeholder" src="{{ auth('admin')->user()->avatar ? asset('storage/backend/avatar/'. auth('admin')->user()->avatar) : 'https://media.tenor.com/images/4fd49de4149a6d348e04f2465a3970af/tenor.gif' }}">
                 </span>
                 <div class="media-body  ml-2  d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ auth('admin')->user()->name }}</span>

@@ -19,7 +19,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "livewire/livewire": "^2.4",
+        "pavel-mironchik/laravel-backup-panel": "^2.0",
         "realrashid/sweet-alert": "^3.2",
+        "spatie/laravel-backup": "^6.11.12",
         "spatie/laravel-permission": "^4.0"
     },
     "require-dev": {
