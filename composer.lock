@@ -1098,16 +1098,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.35.1",
+            "version": "v8.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d118c0df39e7524131176aaf76493eae63a8a602"
+                "reference": "c07477098c3685fcf812920d2fa8fa3a77e1e0bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d118c0df39e7524131176aaf76493eae63a8a602",
-                "reference": "d118c0df39e7524131176aaf76493eae63a8a602",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c07477098c3685fcf812920d2fa8fa3a77e1e0bf",
+                "reference": "c07477098c3685fcf812920d2fa8fa3a77e1e0bf",
                 "shasum": ""
             },
             "require": {
@@ -1262,7 +1262,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-03-30T21:34:17+00:00"
+            "time": "2021-04-06T13:58:47+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2026,22 +2026,22 @@
         },
         {
             "name": "pavel-mironchik/laravel-backup-panel",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavel-mironchik/laravel-backup-panel.git",
-                "reference": "b5eae9576b5e56ac7109c0c63c53559843ad81bb"
+                "reference": "53c9bb167e0b5a9145a16acdc293d951e8372dcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavel-mironchik/laravel-backup-panel/zipball/b5eae9576b5e56ac7109c0c63c53559843ad81bb",
-                "reference": "b5eae9576b5e56ac7109c0c63c53559843ad81bb",
+                "url": "https://api.github.com/repos/pavel-mironchik/laravel-backup-panel/zipball/53c9bb167e0b5a9145a16acdc293d951e8372dcc",
+                "reference": "53c9bb167e0b5a9145a16acdc293d951e8372dcc",
                 "shasum": ""
             },
             "require": {
                 "livewire/livewire": "^2.3",
                 "php": "^8.0|^7.3",
-                "spatie/laravel-backup": "^6.11.12"
+                "spatie/laravel-backup": "^6.11.12|^7.0"
             },
             "require-dev": {
                 "orchestra/testbench": "^5.0|^6.0",
@@ -2080,9 +2080,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pavel-mironchik/laravel-backup-panel/issues",
-                "source": "https://github.com/pavel-mironchik/laravel-backup-panel/tree/2.0.0"
+                "source": "https://github.com/pavel-mironchik/laravel-backup-panel/tree/2.1.0"
             },
-            "time": "2021-01-23T22:06:19+00:00"
+            "time": "2021-04-06T07:52:51+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6163,16 +6163,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.4.10",
+            "version": "v1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "4f0b2bac128ee60a11d9758651f103f78157474a"
+                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/4f0b2bac128ee60a11d9758651f103f78157474a",
-                "reference": "4f0b2bac128ee60a11d9758651f103f78157474a",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/e46a3228da4e95a411a981ac807bd119ab2485fa",
+                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa",
                 "shasum": ""
             },
             "require": {
@@ -6219,7 +6219,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-03-30T21:26:44+00:00"
+            "time": "2021-04-06T14:00:39+00:00"
         },
         {
             "name": "maximebf/debugbar",
