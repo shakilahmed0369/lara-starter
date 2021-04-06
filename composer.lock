@@ -5631,16 +5631,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.5.2",
+            "version": "v3.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "cae0a8d1cb89b0f0522f65e60465e16d738e069b"
+                "reference": "5b75044d45650843a186b7e733ff037dca9d5f50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/cae0a8d1cb89b0f0522f65e60465e16d738e069b",
-                "reference": "cae0a8d1cb89b0f0522f65e60465e16d738e069b",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/5b75044d45650843a186b7e733ff037dca9d5f50",
+                "reference": "5b75044d45650843a186b7e733ff037dca9d5f50",
                 "shasum": ""
             },
             "require": {
@@ -5700,7 +5700,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.5.2"
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.5.3"
             },
             "funding": [
                 {
@@ -5708,7 +5708,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-06T14:21:44+00:00"
+            "time": "2021-04-05T17:47:44+00:00"
         },
         {
             "name": "doctrine/instantiator",
