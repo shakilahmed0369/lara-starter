@@ -31,29 +31,30 @@ Route::get('/', function () {
 */
 Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
   // Role Routes
-  Route::resource('/role', RoleController::class);
+  Route:: resource('/role', RoleController::class);
   // Admin User Routes
-  Route::resource('/admin-user', AdminUserController::class);
+  Route:: resource('/admin-user', AdminUserController::class);
   // Menu Routes
-  Route::post('/menu/updaterow', [MenuController::class, 'updaterow']);
-  Route::resource('/menu', MenuController::class);
+  Route:: post('/menu/updaterow', [MenuController::class, 'updaterow']);
+  Route:: resource('/menu', MenuController::class);
   /* Profile Routes */
-  Route::get('/admin-profile', [AdminProfileController::class, 'index'])->name('profile');
-  Route::put('/admin-profile/update/{id}', [AdminProfileController::class, 'update'])->name('profile.update');
+  Route:: get('/admin-profile', [AdminProfileController::class, 'index'])->name('profile');
+  Route:: put('/admin-profile/update/{id}', [AdminProfileController::class, 'update'])->name('profile.update');
 
-  Route::group(['middleware' => ['admin.auth','permission:super-admin', 'auth:admin']],function () {
+  /* Route Group */
+  Route::group(['middleware' => ['admin.auth','role:super-admin', 'auth:admin']],function () {
     /* Env Editor Routes */
-    Route::get('/env-editor', function(){ return view('vendor.geo-sv.env-editor.index'); });
+    Route:: get('/env-editor', function(){ return view('vendor.geo-sv.env-editor.index'); });
     /* Backup Manager Routes */
-    Route::get('/backup', function(){ return view('vendor.laravel_backup_panel.layout');});
+    Route:: get('/backup', function(){ return view('vendor.laravel_backup_panel.layout');});
   });
 
-    //Settings Routes
-    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-    //Webinfo Rute
-    Route::post('/settings/webinfoupdate', [SettingsController::class, 'webinfoUpdate'])->name('settings.webinfoupdate');
-    //Webinfo Rute
-    Route::post('/settings/contactinfo', [SettingsController::class, 'ContactInfoUpdate'])->name('settings.contactInfoUpdate');
-    Route::post('/settings/imageupdate', [SettingsController::class, 'ImageUpdate'])->name('settings.imageUpdate');
+  /* Setting Routes */
+  Route:: get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+  /* Webinfo Route */
+  Route:: post('/settings/webinfoupdate', [SettingsController::class, 'webinfoUpdate'])->name('settings.webinfoupdate');
+  /* Webinfo Route */
+  Route:: post('/settings/contactinfo', [SettingsController::class, 'ContactInfoUpdate'])->name('settings.contactInfoUpdate');
+  Route:: post('/settings/imageupdate', [SettingsController::class, 'ImageUpdate'])->name('settings.imageUpdate');
 
 });

@@ -15,6 +15,7 @@ class SettingsController extends Controller
     function __construct()
     {
         $this->middleware('auth:admin');
+        $this->middleware(['permission:edit-Site-Settings', 'auth:admin']);
     }
     function index()
     {
@@ -35,7 +36,7 @@ class SettingsController extends Controller
         $update->meta_keyword     = $request->meta_keyword;
         $update->footer_info      = $request->footer_info;
         $update->save();
-        toast('Settigns Updated successfully!', 'success');
+        toast('Settings Updated successfully!', 'success');
         return redirect()->back(); 
     }
 
@@ -54,7 +55,7 @@ class SettingsController extends Controller
         $update->yt        = $request->yt;
         $update->email        = $request->email;
         $update->save();
-        toast('Settigns Updated successfully!', 'success');
+        toast('Settings Updated successfully!', 'success');
         return redirect()->back();
     }
 
@@ -89,8 +90,6 @@ class SettingsController extends Controller
                 $newImageName = str_replace(' ', '', uniqid().'-'.$imageName);
                 // intervention Make image
                 $imageResize = Image::make($image->getRealPath());
-                // fitting image
-                //$imageResize->fit( 800, 480);
                 // saving image
                 $imageResize->save(public_path('storage/backend/logos/'.$newImageName), 80);
                 //deleting old image
@@ -100,7 +99,7 @@ class SettingsController extends Controller
                 }
           }
          
-        toast('Settigns Updated successfully!', 'success');
+        toast('Settings Updated successfully!', 'success');
         return redirect()->back();
     }
 }
