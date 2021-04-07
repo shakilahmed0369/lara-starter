@@ -14,8 +14,8 @@
 
               @php
               /* menu query's */
-                $allMenuItem = DB::table('menus')->get();
-                $parentMenuItem = DB::table('menus')->where('parent_id', 0)->get();
+                $allMenuItem = DB::table('menus')->orderBy('order')->get();
+                $parentMenuItem = DB::table('menus')->where('parent_id', 0)->orderBy('order')->get();
               @endphp
               @foreach ($parentMenuItem as $parentItem)
               <li class="nav-item">

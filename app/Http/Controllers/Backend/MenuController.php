@@ -27,7 +27,7 @@ class MenuController extends Controller
     public function index()
     {
         $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
-        $menu        = Menu::all();
+        $menu        = Menu::orderBy('order')->get();
         $parentItems = Menu::where('parent_id', 0)->orderBy('order')->get();
         return view('backend.pages.admin-aria.menu.index', compact('menu', 'parentItems', 'permissions'));
     }
@@ -110,7 +110,7 @@ class MenuController extends Controller
         $editValue = Menu::find($id);
         // return [$editValue->permissions];
         $permissions = Permission::orderBy('created_at', 'desc')->get()->groupBy('group_name');
-        $menu        = Menu::all();
+        $menu        = Menu::orderBy('order')->get();
         $parentItems = Menu::where('parent_id', 0)->orderBy('order')->get();
         return view('backend.pages.admin-aria.menu.edit', compact('menu', 'parentItems', 'permissions', 'editValue'));
     }

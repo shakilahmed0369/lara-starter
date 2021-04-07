@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\SettingsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +47,13 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
     /* Backup Manager Routes */
     Route::get('/backup', function(){ return view('vendor.laravel_backup_panel.layout');});
   });
+
+    //Settings Routes
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    //Webinfo Rute
+    Route::post('/settings/webinfoupdate', [SettingsController::class, 'webinfoUpdate'])->name('settings.webinfoupdate');
+    //Webinfo Rute
+    Route::post('/settings/contactinfo', [SettingsController::class, 'ContactInfoUpdate'])->name('settings.contactInfoUpdate');
+    Route::post('/settings/imageupdate', [SettingsController::class, 'ImageUpdate'])->name('settings.imageUpdate');
+
 });
