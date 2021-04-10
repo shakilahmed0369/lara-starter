@@ -29889,3 +29889,23 @@ a .active{
 .btn.active{
     background: #dbdbdbb3 !important;
 }
+
+#v-pills-home-tab {
+    border-radius: 0px;
+    border-bottom: 1px solid #5e72e4;
+}
+
+#v-pills-profile-tab {
+    border-radius: 0px;
+    border-bottom: 1px solid #5e72e4;
+}
+
+#v-pills-messages-tab {
+    border-radius: 0px;
+    border-bottom: 1px solid #5e72e4;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #5e72e4 !important;
+}

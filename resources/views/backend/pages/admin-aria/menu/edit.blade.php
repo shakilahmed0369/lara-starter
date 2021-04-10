@@ -176,7 +176,7 @@
 							data: {'menu': data},
 							dataType: 'json',
 							success: function(responce){
-									console.log(responce);
+								window.location.replace('/admin/menu');
 							}
 						});
 					});   
@@ -216,7 +216,6 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-            console.log(id);
             $.ajax({
                 type: "DELETE",
                 url: "/admin/menu/" + id,
