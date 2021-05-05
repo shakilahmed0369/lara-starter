@@ -77,7 +77,7 @@ and guess what you can create this basic resource permission with a single comma
 ````bash
 php artisan lara:permissions Blog
 ````
-first, you have to write `lara:permission` then define your
+first, you have to write `lara:permissions` then define your
 `model` name.
 
 **Note**: It's not like resource permission name have to be a model name
