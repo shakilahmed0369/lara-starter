@@ -3,7 +3,7 @@
 ![logo](https://i.imgur.com/Xnu0l9w.jpg)
 
     
-## About Lara Starter
+# About Lara Starter
 
 Lara Starter is highly capable and customizable 
 Laravel Starter pack. It provides you some powerful and handy
@@ -12,6 +12,7 @@ features out of the box. All you have to do just set up it.
 ## Wise Note
 This is not any kind of laravel composer package. This is a laravel project itself
 just has a backend with some good handy features that you need in almost every project.
+
 ## Features
 
 - MultiAuth, Role, and Permission Builder (GUI).
@@ -26,12 +27,8 @@ just has a backend with some good handy features that you need in almost every p
 ## Dependency
 
 Project requires `php "7.3|^8.2"`
-
-  
-
-    
-
-  ## Installation 
+   
+## Installation 
 
 For install just clone the repo and go inside of it and run 
 These #1-#8 commands and that will do the job.
@@ -77,7 +74,7 @@ suppose you have a Blog model and you want to make 4 basic permission for it
 and guess what you can create this basic resource permission with a single command
 
 ````bash
-  php artisan lara:permissions Blog
+php artisan lara:permissions Blog
 ````
 first, you have to write `lara:permission` then define your
 `model` name.
@@ -91,7 +88,7 @@ Now it's not like you always need
 resource permissions some time you will need single permission for that you must command
 
 ````bash
-    php artisan lara:permissions Blog --single=create
+php artisan lara:permissions Blog --single=create
 
 ````
 that will create a single permission called `createBlog`.
@@ -156,15 +153,15 @@ function __construct()
 Like middleware, we have to define the guard as well when we will Authnticat in Blade in blade.
 
 ````bash
-    # authnticate via permission
-    @if (auth('admin')->user()->hasAnyPermission('createBlog') // you can pass a array alwell
-      # do some thing.
-    @endif
+# authnticate via permission
+@if (auth('admin')->user()->hasAnyPermission('createBlog') # you can pass a array alwell
+# do some thing.
+@endif
 
-    # authnticate via role
-    @if (auth('admin')->user()->hasAnyPermission('publisher') // you can pass a array alwell
-      # do some thing.
-    @endif
+# authnticate via role
+@if (auth('admin')->user()->hasAnyPermission('publisher') # you can pass a array alwell
+# do some thing.
+@endif
 
 ````
 --
