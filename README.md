@@ -71,6 +71,7 @@ suppose you have a Blog model and you want to make 4 basic permission for it
 - writingBlog
 - editBlog
 - deleteBlog
+
 and guess what you can create this basic resource permission with a single command
 
 ````bash
