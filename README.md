@@ -141,7 +141,7 @@ function __construct()
 
     }
 
-# check user is logedin or not
+# check user is logedin or not.
 function __construct()
 {
     $this->middleware('auth:admin');
